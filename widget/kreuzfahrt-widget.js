@@ -20,8 +20,11 @@
 
   var CSS =
     ".kfw{--kfw-akzent:#0b6e8a;--kfw-akzent-hell:#e6f3f6;--kfw-text:#222;--kfw-grau:#666;--kfw-rand:#e3e3e3;--kfw-rot:#c0392b;" +
-    "font-family:inherit;color:var(--kfw-text);line-height:1.45;margin:1.5em 0}" +
+    "font-family:inherit;color:var(--kfw-text);line-height:1.45;margin:1.5em 0;text-align:left}" +
     ".kfw *{box-sizing:border-box}" +
+    // Theme-Vorgaben des Baukastens (Pixpa, WordPress …) für Überschriften und Listen neutralisieren
+    ".kfw h3,.kfw ul,.kfw li,.kfw p{text-align:left;letter-spacing:normal;text-transform:none}" +
+    ".kfw ul{list-style:none;padding:0}.kfw li{list-style:none;padding:0;margin-left:0}.kfw li::before{content:none}" +
     ".kfw-kopf{display:flex;flex-wrap:wrap;gap:.75em;align-items:center;justify-content:space-between;margin-bottom:.75em}" +
     ".kfw-stand{font-size:.85em;color:var(--kfw-grau)}" +
     ".kfw-sort{font:inherit;font-size:.9em;padding:.35em .5em;border:1px solid var(--kfw-rand);border-radius:6px;background:#fff;color:inherit}" +
@@ -35,7 +38,7 @@
     ".kfw-karte{display:flex;flex-direction:column;border:1px solid var(--kfw-rand);border-radius:10px;padding:1em;background:#fff}" +
     ".kfw-kat{align-self:flex-start;font-size:.75em;text-transform:uppercase;letter-spacing:.04em;color:var(--kfw-akzent);" +
     "background:var(--kfw-akzent-hell);border-radius:4px;padding:.15em .5em;margin-bottom:.5em}" +
-    ".kfw-titel{font-size:1.05em;font-weight:700;margin:0 0 .4em}" +
+    ".kfw .kfw-titel{font-family:inherit;font-size:1.05em;font-weight:700;line-height:1.3;color:var(--kfw-text);margin:0 0 .4em;padding:0}" +
     ".kfw-daten{margin:0 0 .75em;padding:0;list-style:none;font-size:.9em;color:var(--kfw-grau)}" +
     ".kfw-daten li{margin:.1em 0}" +
     ".kfw-notiz{font-size:.82em;color:var(--kfw-grau);font-style:italic;margin:0 0 .75em}" +
