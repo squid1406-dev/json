@@ -102,11 +102,13 @@
     ".kfw .kfw-bild{display:block;margin:-1.25em -1.25em 1.1em;aspect-ratio:16/9;overflow:hidden;background:#eef3f1}" +
     ".kfw .kfw-bild img{display:block;width:100%;height:100%;object-fit:cover;margin:0;max-width:none}" +
     ".kfw .kfw-bild{position:relative}" +
-    ".kfw-logo{position:absolute;left:12px;bottom:12px;width:42px;height:42px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.12)}" +
-    ".kfw .kfw-logo img{width:28px;height:28px;object-fit:contain;margin:0}" +
-    ".kfw-mono{font-family:var(--kfw-titel);font-size:20px;color:var(--kfw-gruen);line-height:1}" +
-    ".kfw-anbieter{position:absolute;left:12px;bottom:12px;background:#fff;color:var(--kfw-gruen);font-size:10px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;padding:.5em .8em;line-height:1.3;max-width:calc(100% - 24px);overflow-wrap:anywhere}" +
-    ".kfw-kat{align-self:flex-start;line-height:1.4;font-size:.72em;font-weight:400;text-transform:uppercase;letter-spacing:.12em;color:var(--kfw-gruen-hell);margin:0 0 .6em}" +
+    ".kfw-oben{display:flex;align-items:center;justify-content:space-between;gap:.75em;margin:0 0 .6em;min-height:28px}" +
+    ".kfw-logo{flex:none;display:flex;align-items:center}" +
+    ".kfw .kfw-logo img{width:28px;height:28px;object-fit:contain;margin:0;opacity:.9}" +
+    ".kfw-mono{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid var(--kfw-gruen);font-family:var(--kfw-titel);font-size:15px;color:var(--kfw-gruen);line-height:1}" +
+    ".kfw-oben-name{flex-direction:column;align-items:flex-start;gap:.15em}" +
+    ".kfw-anbieter{color:var(--kfw-gruen);font-size:.8em;font-weight:400;letter-spacing:.02em;line-height:1.3}" +
+    ".kfw-kat{line-height:1.4;font-size:.72em;font-weight:400;text-transform:uppercase;letter-spacing:.12em;color:var(--kfw-gruen-hell);margin:0}" +
     ".kfw .kfw-titel{font-family:var(--kfw-titel);font-size:1.45em;font-weight:400;line-height:1.3;color:var(--kfw-gruen);margin:0 0 .75em;padding:0}" +
     ".kfw .kfw-daten{margin:0 0 1em;font-size:12px!important;font-weight:300;line-height:1.6;color:var(--kfw-grau);opacity:.8;letter-spacing:.02em}" +
     ".kfw-trenner{margin:0 .15em;opacity:.6}" +
@@ -225,7 +227,7 @@
       ? '<img src="' + esc(foto) + '" alt="' + esc(o.titel) + '" loading="lazy" ' +
         "onerror=\"this.onerror=null;this.src='" + ersatz + "';this.alt=''\">"
       : '<img src="' + ersatz + '" alt="" aria-hidden="true">';
-    return '<div class="kfw-bild">' + img + abzeichen(o, modus) + "</div>";
+    return '<div class="kfw-bild">' + img + "</div>";
   }
 
   function karte(o, modus) {
@@ -234,7 +236,7 @@
     daten.push(o.abfahrt ? esc(datum(o.abfahrt)) : "Termin auf Anfrage");
     if (o.dauer) daten.push(esc(o.dauer) + " Tage");
     if (o.kabine && o.kabine !== "Unbekannt") daten.push(esc(o.kabine) + "kabine");
-    if (o.anbieter) daten.push(esc(o.anbieter));
+    if (o.anbieter && modus !== "name") daten.push(esc(o.anbieter));
 
     var r = rabatt(o);
     var preis = o.preis
@@ -249,7 +251,7 @@
     return (
       '<article class="kfw-karte">' +
       bild(o, modus) +
-      '<span class="kfw-kat">' + esc(o.kategorie || "Sonstiges") + "</span>" +
+      '<div class="kfw-oben' + (modus === "name" ? " kfw-oben-name" : "") + '"><span class="kfw-kat">' + esc(o.kategorie || "Sonstiges") + "</span>" + abzeichen(o, modus) + "</div>" +
       '<h3 class="kfw-titel">' + esc(o.titel) + "</h3>" +
       '<div class="kfw-daten">' + daten.map(function (d) { return '<span class="kfw-wert">' + d + "</span>"; }).join(' <span class="kfw-trenner">|</span> ') + "</div>" +
       (o.notiz ? '<div class="kfw-notiz">' + esc(o.notiz) + "</div>" : "") +
