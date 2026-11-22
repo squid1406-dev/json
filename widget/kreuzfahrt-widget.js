@@ -107,20 +107,20 @@
     ".kfw .kfw-logo img{width:28px;height:28px;object-fit:contain;margin:0;opacity:.9}" +
     ".kfw-mono{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid var(--kfw-gruen);font-family:var(--kfw-titel);font-size:15px;color:var(--kfw-gruen);line-height:1}" +
     ".kfw-oben-name{flex-direction:column;align-items:flex-start;gap:.15em}" +
-    ".kfw-anbieter{color:var(--kfw-gruen);font-size:.8em;font-weight:400;letter-spacing:.02em;line-height:1.3}" +
-    ".kfw-kat{line-height:1.4;font-size:.72em;font-weight:400;text-transform:uppercase;letter-spacing:.12em;color:var(--kfw-gruen-hell);margin:0}" +
-    ".kfw .kfw-titel{font-family:var(--kfw-titel);font-size:1.45em;font-weight:400;line-height:1.3;color:var(--kfw-gruen);margin:0 0 .75em;padding:0}" +
-    ".kfw .kfw-daten{margin:0 0 1em;font-size:12px!important;font-weight:300;line-height:1.6;color:var(--kfw-grau);opacity:.8;letter-spacing:.02em}" +
+    ".kfw-anbieter{color:var(--kfw-gruen);font-size:.92em;font-weight:400;letter-spacing:.02em;line-height:1.3}" +
+    ".kfw-kat{line-height:1.4;font-size:.8em;font-weight:400;text-transform:uppercase;letter-spacing:.12em;color:var(--kfw-gruen-hell);margin:0}" +
+    ".kfw .kfw-titel{font-family:var(--kfw-titel);font-size:1.6em;font-weight:400;line-height:1.3;color:var(--kfw-gruen);margin:0 0 .75em;padding:0}" +
+    ".kfw .kfw-daten{margin:0 0 1em;font-size:14px!important;font-weight:300;line-height:1.6;color:var(--kfw-grau);opacity:.8;letter-spacing:.02em}" +
     ".kfw-trenner{margin:0 .15em;opacity:.6}" +
     ".kfw-wert{white-space:nowrap}" +
-    ".kfw .kfw-notiz{font-weight:300;font-size:15px!important;line-height:1.45;color:var(--kfw-grau);font-style:normal;margin:0 0 1em}" +
+    ".kfw .kfw-notiz{font-weight:300;font-size:16.5px!important;line-height:1.45;color:var(--kfw-grau);font-style:normal;margin:0 0 1em}" +
     ".kfw-fuss{margin-top:auto;padding-top:.9em;border-top:1px solid var(--kfw-rand);display:flex;align-items:flex-end;justify-content:space-between;gap:.75em;flex-wrap:wrap}" +
     ".kfw-preis{font-family:var(--kfw-titel);font-size:1.8em;color:var(--kfw-gruen);line-height:1.2}" +
     ".kfw-preis small{font-family:var(--kfw-schrift);font-size:.45em;color:var(--kfw-grau)}" +
     ".kfw-alt{display:block;font-family:var(--kfw-schrift);font-size:.45em;color:var(--kfw-grau);text-decoration:line-through}" +
     ".kfw-rabatt{display:inline-block;background:var(--kfw-rot);color:#fff;font-family:var(--kfw-schrift);font-size:.4em;padding:.2em .45em;margin-left:.4em;vertical-align:middle}" +
     ".kfw .kfw-link{display:inline-block;padding:.75em 1.3em;background:var(--kfw-gruen);border:1px solid var(--kfw-gruen);color:#fff!important;text-decoration:none!important;" +
-    "font-family:var(--kfw-titel);font-size:.8em;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;transition:background .15s,color .15s}" +
+    "font-family:var(--kfw-titel);font-size:.88em;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;transition:background .15s,color .15s}" +
     ".kfw .kfw-link:hover{background:#fff;color:var(--kfw-gruen)!important}" +
     ".kfw-hinweis{font-size:.8em;color:var(--kfw-grau);margin-top:1.25em}" +
     ".kfw-leer,.kfw-fehler{padding:1em;border:1px dashed var(--kfw-rand);color:var(--kfw-grau);background:#fff}" +
@@ -135,7 +135,7 @@
     ".kfw-t-drei{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}" +
     ".kfw-zeile{display:grid;grid-template-columns:150px 1fr auto;gap:1.25em;align-items:center;background:#fff}" +
     ".kfw-zeile .kfw-bild{margin:0;aspect-ratio:3/2}" +
-    ".kfw-zeile .kfw-titel{font-size:1.2em;margin:0 0 .35em}" +
+    ".kfw-zeile .kfw-titel{font-size:1.5em;margin:0 0 .35em}" +
     ".kfw-zeile .kfw-daten{margin:0}" +
     ".kfw-zeile .kfw-oben{margin-bottom:.35em}" +
     ".kfw-zeile-preis{display:flex;flex-direction:column;align-items:flex-end;gap:.6em;text-align:right}" +
@@ -152,7 +152,7 @@
     ".kfw-t-rechts .kfw-zeile{padding:.9em;grid-template-columns:120px 1fr auto}" +
     ".kfw-preis{white-space:nowrap}" +
     "@media (max-width:760px){.kfw-zeile,.kfw-t-rechts .kfw-zeile{grid-template-columns:96px 1fr;gap:.9em 1em;align-items:start}" +
-    ".kfw-zeile .kfw-bild{aspect-ratio:1/1}.kfw-zeile .kfw-titel{font-size:1.05em}" +
+    ".kfw-zeile .kfw-bild{aspect-ratio:1/1}.kfw-zeile .kfw-titel{font-size:1.25em}" +
     ".kfw-zeile-preis{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.6em;min-width:0}" +
     ".kfw-zeile .kfw-preis{font-size:1.5em}.kfw .kfw-zeile .kfw-link{padding:.7em 1em}" +
     ".kfw-t-buehne{grid-template-columns:1fr;padding:1.5em}}" +
