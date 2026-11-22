@@ -18,39 +18,42 @@
     "https://raw.githubusercontent.com/squid1406-dev/json/main/kreuzfahrt-angebote.json";
   var ALLE = "Alle";
 
+  // Farben und Schriften von augenliebe-reiseblog.de (Pixpa-Theme)
   var CSS =
-    ".kfw{--kfw-akzent:#0b6e8a;--kfw-akzent-hell:#e6f3f6;--kfw-text:#222;--kfw-grau:#666;--kfw-rand:#e3e3e3;--kfw-rot:#c0392b;" +
-    "font-family:inherit;color:var(--kfw-text);line-height:1.45;margin:1.5em 0;text-align:left}" +
-    ".kfw *{box-sizing:border-box}" +
-    // Theme-Vorgaben des Baukastens (Pixpa, WordPress …) für Überschriften und Listen neutralisieren
+    ".kfw{--kfw-gruen:#37685d;--kfw-gruen-hell:#567e72;--kfw-gruen-flaeche:#eef3f1;--kfw-text:#14201e;--kfw-grau:#5f6b68;--kfw-rand:#dfe6e3;--kfw-rot:#9b3d32;" +
+    "--kfw-titel:'Playfair Display',Georgia,serif;--kfw-schrift:'Josefin Sans','Helvetica Neue',Arial,sans-serif;" +
+    "font-family:var(--kfw-schrift);font-weight:300;font-size:16px;color:var(--kfw-text);line-height:1.5;margin:1.5em 0;text-align:left}" +
+    ".kfw *{box-sizing:border-box;border-radius:0!important}" +
     ".kfw h3,.kfw ul,.kfw li,.kfw p{text-align:left;letter-spacing:normal;text-transform:none}" +
     ".kfw ul{list-style:none;padding:0}.kfw li{list-style:none;padding:0;margin-left:0}.kfw li::before{content:none}" +
-    ".kfw-kopf{display:flex;flex-wrap:wrap;gap:.75em;align-items:center;justify-content:space-between;margin-bottom:.75em}" +
-    ".kfw-stand{font-size:.85em;color:var(--kfw-grau)}" +
-    ".kfw-sort{font:inherit;font-size:.9em;padding:.35em .5em;border:1px solid var(--kfw-rand);border-radius:6px;background:#fff;color:inherit}" +
-    ".kfw-menu{display:flex;flex-wrap:wrap;gap:.5em;margin:0 0 1.25em;padding:0;list-style:none}" +
-    ".kfw-menu button{font:inherit;font-size:.9em;cursor:pointer;padding:.4em .9em;border-radius:999px;" +
-    "border:1px solid var(--kfw-akzent);background:#fff;color:var(--kfw-akzent);transition:background .15s,color .15s}" +
-    ".kfw-menu button[aria-pressed=false]:hover{background:var(--kfw-akzent-hell)}" +
-    ".kfw-menu button[aria-pressed=true]{background:var(--kfw-akzent);color:#fff}" +
-    ".kfw-menu .kfw-anzahl{opacity:.75;margin-left:.3em;font-size:.85em}" +
-    ".kfw-liste{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1em}" +
-    ".kfw-karte{display:flex;flex-direction:column;border:1px solid var(--kfw-rand);border-radius:10px;padding:1em;background:#fff}" +
-    ".kfw-kat{align-self:flex-start;font-size:.75em;text-transform:uppercase;letter-spacing:.04em;color:var(--kfw-akzent);" +
-    "background:var(--kfw-akzent-hell);border-radius:4px;padding:.15em .5em;margin-bottom:.5em}" +
-    ".kfw .kfw-titel{font-family:inherit;font-size:1.05em;font-weight:700;line-height:1.3;color:var(--kfw-text);margin:0 0 .4em;padding:0}" +
-    ".kfw-daten{margin:0 0 .75em;padding:0;list-style:none;font-size:.9em;color:var(--kfw-grau)}" +
-    ".kfw-daten li{margin:.1em 0}" +
-    ".kfw-notiz{font-size:.82em;color:var(--kfw-grau);font-style:italic;margin:0 0 .75em}" +
-    ".kfw-fuss{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:.5em;flex-wrap:wrap}" +
-    ".kfw-preis{font-size:1.3em;font-weight:700}" +
-    ".kfw-preis small{font-size:.6em;font-weight:400;color:var(--kfw-grau)}" +
-    ".kfw-alt{display:block;font-size:.8em;color:var(--kfw-grau);text-decoration:line-through;font-weight:400}" +
-    ".kfw-rabatt{display:inline-block;background:var(--kfw-rot);color:#fff;font-size:.7em;border-radius:4px;padding:.1em .4em;margin-left:.4em;vertical-align:middle}" +
-    ".kfw-link{display:inline-block;padding:.5em 1em;border-radius:6px;background:var(--kfw-akzent);color:#fff!important;text-decoration:none!important;font-size:.9em;white-space:nowrap}" +
-    ".kfw-link:hover{opacity:.9}" +
-    ".kfw-hinweis{font-size:.8em;color:var(--kfw-grau);margin-top:1em}" +
-    ".kfw-leer,.kfw-fehler{padding:1em;border:1px dashed var(--kfw-rand);border-radius:8px;color:var(--kfw-grau)}" +
+    ".kfw-kopf{display:flex;flex-wrap:wrap;gap:.75em;align-items:center;justify-content:space-between;margin-bottom:1em}" +
+    ".kfw-stand{font-size:.85em;color:var(--kfw-grau);letter-spacing:.03em}" +
+    ".kfw-sort{font:inherit;font-size:.9em;padding:.4em .6em;border:1px solid var(--kfw-rand);background:#fff;color:var(--kfw-text);margin-left:.3em}" +
+    ".kfw-menu{display:flex;flex-wrap:wrap;gap:.5em;margin:0 0 1.5em}" +
+    ".kfw .kfw-menu button{font-family:var(--kfw-titel);font-size:.85em;font-weight:400;text-transform:uppercase;letter-spacing:.06em;" +
+    "cursor:pointer;padding:.55em 1.1em;margin:0;border:1px solid var(--kfw-gruen);background:#fff;color:var(--kfw-gruen);" +
+    "transition:background .15s,color .15s;box-shadow:none}" +
+    ".kfw .kfw-menu button[aria-pressed=false]:hover{background:var(--kfw-gruen-flaeche)}" +
+    ".kfw .kfw-menu button[aria-pressed=true]{background:var(--kfw-gruen);color:#fff}" +
+    ".kfw-menu .kfw-anzahl{opacity:.7;margin-left:.35em;font-size:.85em}" +
+    ".kfw-liste{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25em}" +
+    ".kfw-karte{display:flex;flex-direction:column;border:1px solid var(--kfw-rand);border-top:3px solid var(--kfw-gruen);padding:1.25em;background:#fff}" +
+    ".kfw-kat{align-self:flex-start;font-size:.72em;font-weight:400;text-transform:uppercase;letter-spacing:.12em;color:var(--kfw-gruen-hell);margin-bottom:.6em}" +
+    ".kfw .kfw-titel{font-family:var(--kfw-titel);font-size:1.2em;font-weight:400;line-height:1.3;color:var(--kfw-gruen);margin:0 0 .75em;padding:0}" +
+    ".kfw-daten{margin:0 0 .9em;font-size:.92em}" +
+    ".kfw-daten li{margin:.15em 0}" +
+    ".kfw-daten b{font-weight:400;font-size:.78em;text-transform:uppercase;letter-spacing:.08em;color:var(--kfw-grau);display:inline-block;min-width:5.6em}" +
+    ".kfw-notiz{font-size:.85em;color:var(--kfw-grau);font-style:italic;margin:0 0 1em}" +
+    ".kfw-fuss{margin-top:auto;padding-top:.9em;border-top:1px solid var(--kfw-rand);display:flex;align-items:flex-end;justify-content:space-between;gap:.75em;flex-wrap:wrap}" +
+    ".kfw-preis{font-family:var(--kfw-titel);font-size:1.4em;color:var(--kfw-gruen);line-height:1.2}" +
+    ".kfw-preis small{font-family:var(--kfw-schrift);font-size:.55em;color:var(--kfw-grau)}" +
+    ".kfw-alt{display:block;font-family:var(--kfw-schrift);font-size:.55em;color:var(--kfw-grau);text-decoration:line-through}" +
+    ".kfw-rabatt{display:inline-block;background:var(--kfw-rot);color:#fff;font-family:var(--kfw-schrift);font-size:.5em;padding:.2em .45em;margin-left:.4em;vertical-align:middle}" +
+    ".kfw .kfw-link{display:inline-block;padding:.75em 1.3em;background:var(--kfw-gruen);border:1px solid var(--kfw-gruen);color:#fff!important;text-decoration:none!important;" +
+    "font-family:var(--kfw-titel);font-size:.8em;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;transition:background .15s,color .15s}" +
+    ".kfw .kfw-link:hover{background:#fff;color:var(--kfw-gruen)!important}" +
+    ".kfw-hinweis{font-size:.8em;color:var(--kfw-grau);margin-top:1.25em}" +
+    ".kfw-leer,.kfw-fehler{padding:1em;border:1px dashed var(--kfw-rand);color:var(--kfw-grau);background:#fff}" +
     "@media (max-width:480px){.kfw-liste{grid-template-columns:1fr}}";
 
   // ---------- Hilfsfunktionen ----------
@@ -100,11 +103,11 @@
 
   function karte(o) {
     var daten = [];
-    if (o.schiff) daten.push("<li>🚢 " + esc(o.schiff) + "</li>");
-    daten.push("<li>📅 " + (o.abfahrt ? esc(datum(o.abfahrt)) : "Termine auf Anfrage") + "</li>");
-    if (o.dauer) daten.push("<li>⏱ " + esc(o.dauer) + " Tage</li>");
-    if (o.kabine && o.kabine !== "Unbekannt") daten.push("<li>🛏 " + esc(o.kabine) + "kabine</li>");
-    if (o.anbieter) daten.push("<li>🏷 " + esc(o.anbieter) + "</li>");
+    if (o.schiff) daten.push("<li><b>Schiff</b> " + esc(o.schiff) + "</li>");
+    daten.push("<li><b>Abfahrt</b> " + (o.abfahrt ? esc(datum(o.abfahrt)) : "auf Anfrage") + "</li>");
+    if (o.dauer) daten.push("<li><b>Dauer</b> " + esc(o.dauer) + " Tage</li>");
+    if (o.kabine && o.kabine !== "Unbekannt") daten.push("<li><b>Kabine</b> " + esc(o.kabine) + "</li>");
+    if (o.anbieter) daten.push("<li><b>Anbieter</b> " + esc(o.anbieter) + "</li>");
 
     var r = rabatt(o);
     var preis = o.preis
