@@ -61,3 +61,20 @@ Farben anpassen: in der CSS-Variablen `--kfw-akzent` (Standard `#0b6e8a`).
 | `data-mehr-link` | Ziel des Knopfs „Alle Angebote ansehen“ | `/cruise` |
 
 Angebote mit vergangenem Abfahrtsdatum werden nicht angezeigt. Eine Überschrift erzeugt der Teaser nicht, sie wird in Pixpa über dem Block gesetzt.
+
+## Reiseziele-Widget
+
+Teasert die Seiten unterhalb von „Reiseziele“ an, nur mit Text und Linien-Icons.
+
+```html
+<div data-reiseziele data-layout="kacheln"></div>
+<script src="https://cdn.jsdelivr.net/gh/squid1406-dev/json@VERSION/reiseziele-widget.js"></script>
+```
+
+| `data-layout` | Darstellung |
+|---|---|
+| `kacheln` | Icon-Kacheln mit Teasertext (Standard) |
+| `band` | schmales grünes Textband; Beschriftung über `data-label` (Standard „Reiseziele“) |
+| `regionen` | nach Regionen gruppiert |
+
+Neue Reiseziele werden oben in `reiseziele-widget.js` in der Liste `ZIELE` ergänzt (Name, Seite, Teaser, Icon, Region).
