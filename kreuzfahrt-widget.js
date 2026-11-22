@@ -36,7 +36,7 @@
 
   // Anbieter-Abzeichen auf dem Bild: "logo" (Logo des Anbieters) oder "name" (Name als Etikett).
   // Lässt sich pro Seite mit data-anbieter="logo" bzw. "name" am Container überschreiben.
-  var ANBIETER_ANZEIGE = "logo";
+  var ANBIETER_ANZEIGE = "name";
   // Logos liegen als Kopie im Repository (Ordner logos/), damit Besucher keine Anfragen an fremde Server schicken
   var LOGO_BASIS = "https://cdn.jsdelivr.net/gh/squid1406-dev/json@main/logos/";
   var LOGOS = {
