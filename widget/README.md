@@ -57,9 +57,7 @@ Farben anpassen: in der CSS-Variablen `--kfw-akzent` (Standard `#0b6e8a`).
 | `data-max` | Anzahl der Angebote (schaltet den Teaser ein) | – |
 | `data-layout` | `liste`, `karten` oder `buehne` | `liste` |
 | `data-auswahl` | `rabatt`, `preis`, `abfahrt` oder `solo` | `rabatt` |
-| `data-kicker` | kleine Zeile über der Überschrift | Solo an Bord |
-| `data-titel` | Überschrift (Schreibschrift) | Aktuelle Kreuzfahrtangebote |
 | `data-text` | optionaler Begleittext | – |
 | `data-mehr-link` | Ziel des Knopfs „Alle Angebote ansehen“ | `/cruise` |
 
-Angebote mit vergangenem Abfahrtsdatum werden nicht angezeigt.
+Angebote mit vergangenem Abfahrtsdatum werden nicht angezeigt. Eine Überschrift erzeugt der Teaser nicht, sie wird in Pixpa über dem Block gesetzt.

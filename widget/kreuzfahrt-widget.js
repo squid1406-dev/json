@@ -126,8 +126,6 @@
     ".kfw-leer,.kfw-fehler{padding:1em;border:1px dashed var(--kfw-rand);color:var(--kfw-grau);background:#fff}" +
     // Startseiten-Teaser
     ".kfw-t-kopf{text-align:center;margin:0 0 1.75em}" +
-    ".kfw .kfw-t-kicker{font-size:.8em;text-transform:uppercase;letter-spacing:.18em;color:var(--kfw-gruen-hell);margin:0 0 .2em;text-align:inherit}" +
-    ".kfw .kfw-t-titel{font-family:'Great Vibes',cursive;font-weight:400;font-size:2.6em;line-height:1.15;color:var(--kfw-gruen-hell);margin:0;padding:0;text-align:inherit;letter-spacing:normal;text-transform:none}" +
     ".kfw .kfw-t-text{font-size:15px;line-height:1.6;margin:.8em auto 0;max-width:36em;text-align:inherit}" +
     ".kfw-t-mehr{text-align:center;margin-top:1.75em}" +
     ".kfw .kfw-mehr{display:inline-flex;align-items:center;gap:.6em;padding:.85em 1.6em;border:1px solid var(--kfw-gruen);color:var(--kfw-gruen)!important;background:transparent;" +
@@ -146,7 +144,7 @@
     ".kfw-t-liste{max-width:980px;margin:0 auto}" +
     ".kfw-t-buehne{display:grid;grid-template-columns:minmax(220px,1fr) 2.2fr;gap:2.5em;align-items:center;padding:2.5em;background:linear-gradient(135deg,var(--kfw-gruen),#5f8f84)}" +
     ".kfw .kfw-t-buehne .kfw-t-kopf{text-align:left;margin-bottom:1.5em}" +
-    ".kfw .kfw-t-buehne .kfw-t-kicker,.kfw .kfw-t-buehne .kfw-t-titel,.kfw .kfw-t-buehne .kfw-t-text{color:#fff}" +
+    ".kfw .kfw-t-buehne .kfw-t-text{color:#fff}" +
     ".kfw-t-buehne .kfw-t-mehr{text-align:left;margin:0}" +
     ".kfw .kfw-t-buehne .kfw-mehr{border-color:#fff;color:#fff!important}" +
     ".kfw .kfw-t-buehne .kfw-mehr:hover{background:#fff;color:var(--kfw-gruen)!important}" +
@@ -418,7 +416,7 @@
   // ---------- Startseiten-Teaser ----------
   // <div data-kreuzfahrt-widget data-max="3" data-layout="karten|buehne|liste"
   //      data-auswahl="rabatt|preis|abfahrt|solo" data-mehr-link="/cruise"
-  //      data-kicker="Solo an Bord" data-titel="Aktuelle Kreuzfahrtangebote"></div>
+  //      data-text="optionaler Begleittext"></div>
   var AUSWAHL = {
     rabatt: function (a, b) { return rabatt(b) - rabatt(a) || SORTIERUNG.preis(a, b); },
     preis: SORTIERUNG.preis,
@@ -443,12 +441,8 @@
 
     var mehr = sichererLink(root.getAttribute("data-mehr-link") || "") || root.getAttribute("data-mehr-link") || "/cruise";
     if (!/^(https?:\/\/|\/)/.test(mehr)) mehr = "/cruise";
-    var kopf =
-      '<div class="kfw-t-kopf">' +
-      '<div class="kfw-t-kicker">' + esc(root.getAttribute("data-kicker") || "Solo an Bord") + "</div>" +
-      '<h2 class="kfw-t-titel">' + esc(root.getAttribute("data-titel") || "Aktuelle Kreuzfahrtangebote") + "</h2>" +
-      (root.getAttribute("data-text") ? '<p class="kfw-t-text">' + esc(root.getAttribute("data-text")) + "</p>" : "") +
-      "</div>";
+    // Überschrift wird bewusst nicht erzeugt – sie wird im Seitenbaukasten (Pixpa) gesetzt.
+    var kopf = root.getAttribute("data-text") ? '<div class="kfw-t-kopf"><p class="kfw-t-text">' + esc(root.getAttribute("data-text")) + "</p></div>" : "";
     var knopf = '<div class="kfw-t-mehr"><a class="kfw-mehr" href="' + esc(mehr) + '">Alle Angebote ansehen</a></div>';
 
     root.classList.add("kfw-teaser", "kfw-layout-" + layout);
