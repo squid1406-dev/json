@@ -6,18 +6,27 @@ Die Daten werden beim Seitenaufruf live aus diesem Repository geladen –
 automatische Updates der JSON erscheinen also ohne Änderung an der Webseite
 (GitHub cached die Datei bis zu 5 Minuten).
 
-## Einbinden in WordPress (augenliebe-reiseblog.de)
+## Einbinden in Pixpa
 
-Seite oder Beitrag bearbeiten → Block **„Individuelles HTML“** einfügen → einsetzen:
+Seite im Pixpa-Editor öffnen → Block **„Embed Code“ / „HTML“** hinzufügen → einsetzen:
 
 ```html
 <div id="kreuzfahrt-angebote"></div>
-<script src="https://cdn.jsdelivr.net/gh/squid1406-dev/json@main/widget/kreuzfahrt-widget.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/squid1406-dev/json@main/kreuzfahrt-widget.js"></script>
 ```
 
-Die jsDelivr-Adresse funktioniert erst, wenn `widget/` im Branch `main` liegt.
-Alternativ den kompletten Inhalt von `kreuzfahrt-widget.js` zwischen
-`<script>` und `</script>` direkt in den HTML-Block kopieren.
+Wichtig:
+
+- **Nicht** `raw.githubusercontent.com/...` oder `github.com/.../blob/...` als
+  Script-Adresse verwenden. GitHub liefert die Datei dort als Text bzw. als
+  HTML-Seite aus, der Browser führt sie nicht aus. Immer die jsDelivr-Adresse nehmen.
+- Pixpa führt Scripte im Editor-Vorschaubild meist nicht aus. Zum Testen die
+  **veröffentlichte** Seite aufrufen.
+- jsDelivr cached Dateien bis zu 12 Stunden. Nach einer Änderung an der
+  JS-Datei ggf. `https://purge.jsdelivr.net/gh/squid1406-dev/json@main/kreuzfahrt-widget.js`
+  im Browser aufrufen. (Die Angebote selbst kommen ohne diese Verzögerung direkt von GitHub.)
+- Alternative: Script-Zeile unter *Einstellungen → Externe Dienste / Code
+  einbetten (Header)* einfügen und im Seiten-Block nur das `<div>` lassen.
 
 ## Optionen
 

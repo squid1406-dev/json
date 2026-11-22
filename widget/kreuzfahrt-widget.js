@@ -234,6 +234,15 @@
       style.textContent = CSS;
       document.head.appendChild(style);
     }
+    suchen();
+    // Baukästen wie Pixpa fügen Seiteninhalte teils erst nachträglich ein
+    // (Seitenwechsel ohne Neuladen). Neue Container daher ebenfalls erkennen.
+    if (window.MutationObserver && document.body) {
+      new MutationObserver(suchen).observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  function suchen() {
     var ziele = document.querySelectorAll("#kreuzfahrt-angebote, [data-kreuzfahrt-widget]");
     for (var i = 0; i < ziele.length; i++) init(ziele[i]);
   }
