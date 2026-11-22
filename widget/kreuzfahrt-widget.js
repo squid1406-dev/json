@@ -40,11 +40,11 @@
     ".kfw-liste{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25em}" +
     ".kfw-karte{display:flex;flex-direction:column;border:1px solid var(--kfw-rand);padding:1.25em;background:#fff}" +
     ".kfw-kat{align-self:flex-start;font-size:.72em;font-weight:400;text-transform:uppercase;letter-spacing:.12em;color:var(--kfw-gruen-hell);margin-bottom:.6em}" +
-    ".kfw .kfw-titel{font-family:var(--kfw-titel);font-size:1.2em;font-weight:400;line-height:1.3;color:var(--kfw-gruen);margin:0 0 .75em;padding:0}" +
-    ".kfw-daten{margin:0 0 .9em;font-size:.82em;color:var(--kfw-grau)}" +
-    ".kfw .kfw-daten li{display:grid;grid-template-columns:4.6em 1fr;gap:.5em;margin:.1em 0;font-size:13px;line-height:1.45;color:var(--kfw-grau)}" +
-    ".kfw .kfw-daten b{font-weight:300;font-size:1em;color:var(--kfw-grau);opacity:.7}" +
-    ".kfw .kfw-notiz{font-weight:300;font-size:13px!important;line-height:1.45;color:var(--kfw-grau);font-style:normal;margin:0 0 1em}" +
+    ".kfw .kfw-titel{font-family:var(--kfw-titel);font-size:1.45em;font-weight:400;line-height:1.3;color:var(--kfw-gruen);margin:0 0 .75em;padding:0}" +
+    ".kfw .kfw-daten{margin:0 0 1em;font-size:12px!important;font-weight:300;line-height:1.6;color:var(--kfw-grau);opacity:.8;letter-spacing:.02em}" +
+    ".kfw-trenner{margin:0 .15em;opacity:.6}" +
+    ".kfw-wert{white-space:nowrap}" +
+    ".kfw .kfw-notiz{font-weight:300;font-size:15px!important;line-height:1.45;color:var(--kfw-grau);font-style:normal;margin:0 0 1em}" +
     ".kfw-fuss{margin-top:auto;padding-top:.9em;border-top:1px solid var(--kfw-rand);display:flex;align-items:flex-end;justify-content:space-between;gap:.75em;flex-wrap:wrap}" +
     ".kfw-preis{font-family:var(--kfw-titel);font-size:1.8em;color:var(--kfw-gruen);line-height:1.2}" +
     ".kfw-preis small{font-family:var(--kfw-schrift);font-size:.45em;color:var(--kfw-grau)}" +
@@ -104,11 +104,11 @@
 
   function karte(o) {
     var daten = [];
-    if (o.schiff) daten.push("<li><b>Schiff</b><span>" + esc(o.schiff) + "</span></li>");
-    daten.push("<li><b>Abfahrt</b><span>" + (o.abfahrt ? esc(datum(o.abfahrt)) : "auf Anfrage") + "</span></li>");
-    if (o.dauer) daten.push("<li><b>Dauer</b><span>" + esc(o.dauer) + " Tage</span></li>");
-    if (o.kabine && o.kabine !== "Unbekannt") daten.push("<li><b>Kabine</b><span>" + esc(o.kabine) + "</span></li>");
-    if (o.anbieter) daten.push("<li><b>Anbieter</b><span>" + esc(o.anbieter) + "</span></li>");
+    if (o.schiff) daten.push(esc(o.schiff));
+    daten.push(o.abfahrt ? esc(datum(o.abfahrt)) : "Termin auf Anfrage");
+    if (o.dauer) daten.push(esc(o.dauer) + " Tage");
+    if (o.kabine && o.kabine !== "Unbekannt") daten.push(esc(o.kabine) + "kabine");
+    if (o.anbieter) daten.push(esc(o.anbieter));
 
     var r = rabatt(o);
     var preis = o.preis
@@ -124,7 +124,7 @@
       '<article class="kfw-karte">' +
       '<span class="kfw-kat">' + esc(o.kategorie || "Sonstiges") + "</span>" +
       '<h3 class="kfw-titel">' + esc(o.titel) + "</h3>" +
-      '<ul class="kfw-daten">' + daten.join("") + "</ul>" +
+      '<div class="kfw-daten">' + daten.map(function (d) { return '<span class="kfw-wert">' + d + "</span>"; }).join(' <span class="kfw-trenner">|</span> ') + "</div>" +
       (o.notiz ? '<div class="kfw-notiz">' + esc(o.notiz) + "</div>" : "") +
       '<div class="kfw-fuss"><div class="kfw-preis">' + preis + "</div>" +
       (link
