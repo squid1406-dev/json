@@ -152,7 +152,11 @@
     ".kfw .kfw-t-buehne .kfw-mehr:hover{background:#fff;color:var(--kfw-gruen)!important}" +
     ".kfw-t-rechts{display:flex;flex-direction:column;gap:.9em}" +
     ".kfw-t-rechts .kfw-zeile{padding:.9em;grid-template-columns:120px 1fr auto}" +
-    "@media (max-width:760px){.kfw-zeile,.kfw-t-rechts .kfw-zeile{grid-template-columns:1fr}.kfw-zeile-preis{flex-direction:row;justify-content:space-between;align-items:flex-end}" +
+    ".kfw-preis{white-space:nowrap}" +
+    "@media (max-width:760px){.kfw-zeile,.kfw-t-rechts .kfw-zeile{grid-template-columns:96px 1fr;gap:.9em 1em;align-items:start}" +
+    ".kfw-zeile .kfw-bild{aspect-ratio:1/1}.kfw-zeile .kfw-titel{font-size:1.05em}" +
+    ".kfw-zeile-preis{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.6em;min-width:0}" +
+    ".kfw-zeile .kfw-preis{font-size:1.5em}.kfw .kfw-zeile .kfw-link{padding:.7em 1em}" +
     ".kfw-t-buehne{grid-template-columns:1fr;padding:1.5em}}" +
     "@media (max-width:480px){.kfw-liste{grid-template-columns:1fr}}";
 
@@ -429,7 +433,7 @@
 
   function teaser(root, offers) {
     var max = Math.max(1, parseInt(root.getAttribute("data-max"), 10) || 3);
-    var layout = root.getAttribute("data-layout") || "karten";
+    var layout = root.getAttribute("data-layout") || "liste";
     var modus = root.getAttribute("data-anbieter") || ANBIETER_ANZEIGE;
     var heute = new Date().toISOString().slice(0, 10);
     var auswahl = offers
