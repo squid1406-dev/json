@@ -34,6 +34,7 @@ Wichtig:
 |---|---|
 | `data-src="https://…/datei.json"` | Andere JSON-Quelle verwenden |
 | `data-kategorie="Grönland"` | Diese Kategorie ist beim Laden aktiv |
+| `data-anbieter="logo"` | Grünes Anbieter-Logo statt Anbietername (Standard: `name`) |
 
 Kategorien lassen sich direkt verlinken, z. B.
 `https://www.augenliebe-reiseblog.de/kreuzfahrten/#kategorie=Antarktis`.
