@@ -124,6 +124,40 @@
     ".kfw .kfw-link:hover{background:#fff;color:var(--kfw-gruen)!important}" +
     ".kfw-hinweis{font-size:.8em;color:var(--kfw-grau);margin-top:1.25em}" +
     ".kfw-leer,.kfw-fehler{padding:1em;border:1px dashed var(--kfw-rand);color:var(--kfw-grau);background:#fff}" +
+    // Startseiten-Teaser
+    ".kfw-t-kopf{text-align:center;margin:0 0 1.75em}" +
+    ".kfw .kfw-t-kicker{font-size:.8em;text-transform:uppercase;letter-spacing:.18em;color:var(--kfw-gruen-hell);margin:0 0 .2em;text-align:inherit}" +
+    ".kfw .kfw-t-titel{font-family:'Great Vibes',cursive;font-weight:400;font-size:2.6em;line-height:1.15;color:var(--kfw-gruen-hell);margin:0;padding:0;text-align:inherit;letter-spacing:normal;text-transform:none}" +
+    ".kfw .kfw-t-text{font-size:15px;line-height:1.6;margin:.8em auto 0;max-width:36em;text-align:inherit}" +
+    ".kfw-t-mehr{text-align:center;margin-top:1.75em}" +
+    ".kfw .kfw-mehr{display:inline-flex;align-items:center;gap:.6em;padding:.85em 1.6em;border:1px solid var(--kfw-gruen);color:var(--kfw-gruen)!important;background:transparent;" +
+    "text-decoration:none!important;font-size:.85em;text-transform:uppercase;letter-spacing:.14em;transition:background .15s,color .15s}" +
+    ".kfw .kfw-mehr::after{content:'\\203A';font-size:1.4em;line-height:1}" +
+    ".kfw .kfw-mehr:hover{background:var(--kfw-gruen);color:#fff!important}" +
+    ".kfw-t-drei{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}" +
+    ".kfw-zeile{display:grid;grid-template-columns:150px 1fr auto;gap:1.25em;align-items:center;background:#fff}" +
+    ".kfw-zeile .kfw-bild{margin:0;aspect-ratio:3/2}" +
+    ".kfw-zeile .kfw-titel{font-size:1.2em;margin:0 0 .35em}" +
+    ".kfw-zeile .kfw-daten{margin:0}" +
+    ".kfw-zeile .kfw-oben{margin-bottom:.35em}" +
+    ".kfw-zeile-preis{display:flex;flex-direction:column;align-items:flex-end;gap:.6em;text-align:right}" +
+    ".kfw-t-liste .kfw-zeile{padding:1.25em 0;border-bottom:1px solid var(--kfw-rand);background:transparent}" +
+    ".kfw-t-liste .kfw-zeile:first-child{border-top:1px solid var(--kfw-rand)}" +
+    ".kfw-t-liste{max-width:980px;margin:0 auto}" +
+    ".kfw-t-buehne{display:grid;grid-template-columns:minmax(220px,1fr) 2.2fr;gap:2.5em;align-items:center;padding:2.5em;background:linear-gradient(135deg,var(--kfw-gruen),#5f8f84)}" +
+    ".kfw .kfw-t-buehne .kfw-t-kopf{text-align:left;margin-bottom:1.5em}" +
+    ".kfw .kfw-t-buehne .kfw-t-kicker,.kfw .kfw-t-buehne .kfw-t-titel,.kfw .kfw-t-buehne .kfw-t-text{color:#fff}" +
+    ".kfw-t-buehne .kfw-t-mehr{text-align:left;margin:0}" +
+    ".kfw .kfw-t-buehne .kfw-mehr{border-color:#fff;color:#fff!important}" +
+    ".kfw .kfw-t-buehne .kfw-mehr:hover{background:#fff;color:var(--kfw-gruen)!important}" +
+    ".kfw-t-rechts{display:flex;flex-direction:column;gap:.9em}" +
+    ".kfw-t-rechts .kfw-zeile{padding:.9em;grid-template-columns:120px 1fr auto}" +
+    ".kfw-preis{white-space:nowrap}" +
+    "@media (max-width:760px){.kfw-zeile,.kfw-t-rechts .kfw-zeile{grid-template-columns:96px 1fr;gap:.9em 1em;align-items:start}" +
+    ".kfw-zeile .kfw-bild{aspect-ratio:1/1}.kfw-zeile .kfw-titel{font-size:1.05em}" +
+    ".kfw-zeile-preis{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.6em;min-width:0}" +
+    ".kfw-zeile .kfw-preis{font-size:1.5em}.kfw .kfw-zeile .kfw-link{padding:.7em 1em}" +
+    ".kfw-t-buehne{grid-template-columns:1fr;padding:1.5em}}" +
     "@media (max-width:480px){.kfw-liste{grid-template-columns:1fr}}";
 
   // ---------- Hilfsfunktionen ----------
@@ -230,38 +264,59 @@
     return '<div class="kfw-bild">' + img + "</div>";
   }
 
-  function karte(o, modus) {
+  function datenHtml(o, modus) {
     var daten = [];
     if (o.schiff) daten.push(esc(o.schiff));
     daten.push(o.abfahrt ? esc(datum(o.abfahrt)) : "Termin auf Anfrage");
     if (o.dauer) daten.push(esc(o.dauer) + " Tage");
     if (o.kabine && o.kabine !== "Unbekannt") daten.push(esc(o.kabine) + "kabine");
     if (o.anbieter && modus !== "name") daten.push(esc(o.anbieter));
+    return '<div class="kfw-daten">' + daten.map(function (d) { return '<span class="kfw-wert">' + d + "</span>"; })
+      .join(' <span class="kfw-trenner">|</span> ') + "</div>";
+  }
 
+  function preisHtml(o) {
     var r = rabatt(o);
-    var preis = o.preis
+    return '<div class="kfw-preis">' + (o.preis
       ? (o.orig && r ? '<span class="kfw-alt">statt ' + esc(euro.format(o.orig)) + "</span>" : "") +
         "<small>ab </small>" + esc(euro.format(o.preis)) +
         (r ? '<span class="kfw-rabatt">−' + r + " %</span>" : "") +
         "<small> p. P.</small>"
-      : "<small>Preis auf Anfrage</small>";
+      : "<small>Preis auf Anfrage</small>") + "</div>";
+  }
 
+  function linkHtml(o, text) {
     var link = sichererLink(o.link);
+    return link ? '<a class="kfw-link" href="' + esc(link) + '" target="_blank" rel="noopener nofollow sponsored">' + (text || "Zum Angebot") + "</a>" : "";
+  }
 
+  function obenHtml(o, modus) {
+    return '<div class="kfw-oben' + (modus === "name" ? " kfw-oben-name" : "") + '"><span class="kfw-kat">' +
+      esc(o.kategorie || "Sonstiges") + "</span>" + abzeichen(o, modus) + "</div>";
+  }
+
+  function karte(o, modus, kompakt) {
     return (
       '<article class="kfw-karte">' +
-      bild(o, modus) +
-      '<div class="kfw-oben' + (modus === "name" ? " kfw-oben-name" : "") + '"><span class="kfw-kat">' + esc(o.kategorie || "Sonstiges") + "</span>" + abzeichen(o, modus) + "</div>" +
+      bild(o, modus) + obenHtml(o, modus) +
       '<h3 class="kfw-titel">' + esc(o.titel) + "</h3>" +
-      '<div class="kfw-daten">' + daten.map(function (d) { return '<span class="kfw-wert">' + d + "</span>"; }).join(' <span class="kfw-trenner">|</span> ') + "</div>" +
-      (o.notiz ? '<div class="kfw-notiz">' + esc(o.notiz) + "</div>" : "") +
-      '<div class="kfw-fuss"><div class="kfw-preis">' + preis + "</div>" +
-      (link
-        ? '<a class="kfw-link" href="' + esc(link) + '" target="_blank" rel="noopener nofollow sponsored">Zum Angebot</a>'
-        : "") +
-      "</div></article>"
+      datenHtml(o, modus) +
+      (o.notiz && !kompakt ? '<div class="kfw-notiz">' + esc(o.notiz) + "</div>" : "") +
+      '<div class="kfw-fuss">' + preisHtml(o) + linkHtml(o) + "</div></article>"
     );
   }
+
+  // Kompakte Zeile für die Startseiten-Layouts "buehne" und "liste"
+  function zeile(o, modus) {
+    return (
+      '<article class="kfw-zeile">' + bild(o, modus) +
+      '<div class="kfw-zeile-text">' + obenHtml(o, modus) +
+      '<h3 class="kfw-titel">' + esc(o.titel) + "</h3>" + datenHtml(o, modus) + "</div>" +
+      '<div class="kfw-zeile-preis">' + preisHtml(o) + linkHtml(o) + "</div></article>"
+    );
+  }
+
+
 
   function init(root) {
     if (root.getAttribute("data-kfw-init")) return;
@@ -286,6 +341,7 @@
 
   function aufbauen(root, data) {
     var offers = ohneDubletten((data && data.offers) || []);
+    if (root.getAttribute("data-max")) return teaser(root, offers);
 
     // Kategorien mit Anzahl, nach Häufigkeit sortiert; "Sonstiges" immer am Ende.
     var zaehler = {};
@@ -357,6 +413,53 @@
     });
 
     zeichnen();
+  }
+
+  // ---------- Startseiten-Teaser ----------
+  // <div data-kreuzfahrt-widget data-max="3" data-layout="karten|buehne|liste"
+  //      data-auswahl="rabatt|preis|abfahrt|solo" data-mehr-link="/cruise"
+  //      data-kicker="Solo an Bord" data-titel="Aktuelle Kreuzfahrtangebote"></div>
+  var AUSWAHL = {
+    rabatt: function (a, b) { return rabatt(b) - rabatt(a) || SORTIERUNG.preis(a, b); },
+    preis: SORTIERUNG.preis,
+    abfahrt: SORTIERUNG.abfahrt,
+    solo: function (a, b) { return soloWert(b) - soloWert(a) || SORTIERUNG.preis(a, b); }
+  };
+
+  function soloWert(o) {
+    var t = ((o.kategorie || "") + " " + (o.notiz || "") + " " + (o.anbieter || "")).toLowerCase();
+    return /solo|single|einzelkabinenzuschlag (laut seite )?gering|entfällt|ohne zuschlag/.test(t) ? 1 : 0;
+  }
+
+  function teaser(root, offers) {
+    var max = Math.max(1, parseInt(root.getAttribute("data-max"), 10) || 3);
+    var layout = root.getAttribute("data-layout") || "liste";
+    var modus = root.getAttribute("data-anbieter") || ANBIETER_ANZEIGE;
+    var heute = new Date().toISOString().slice(0, 10);
+    var auswahl = offers
+      .filter(function (o) { return !o.abfahrt || o.abfahrt >= heute; })
+      .sort(AUSWAHL[root.getAttribute("data-auswahl")] || AUSWAHL.rabatt)
+      .slice(0, max);
+
+    var mehr = sichererLink(root.getAttribute("data-mehr-link") || "") || root.getAttribute("data-mehr-link") || "/cruise";
+    if (!/^(https?:\/\/|\/)/.test(mehr)) mehr = "/cruise";
+    var kopf =
+      '<div class="kfw-t-kopf">' +
+      '<div class="kfw-t-kicker">' + esc(root.getAttribute("data-kicker") || "Solo an Bord") + "</div>" +
+      '<h2 class="kfw-t-titel">' + esc(root.getAttribute("data-titel") || "Aktuelle Kreuzfahrtangebote") + "</h2>" +
+      (root.getAttribute("data-text") ? '<p class="kfw-t-text">' + esc(root.getAttribute("data-text")) + "</p>" : "") +
+      "</div>";
+    var knopf = '<div class="kfw-t-mehr"><a class="kfw-mehr" href="' + esc(mehr) + '">Alle Angebote ansehen</a></div>';
+
+    root.classList.add("kfw-teaser", "kfw-layout-" + layout);
+    if (layout === "buehne") {
+      root.innerHTML = '<div class="kfw-t-buehne"><div class="kfw-t-links">' + kopf + knopf + "</div>" +
+        '<div class="kfw-t-rechts">' + auswahl.map(function (o) { return zeile(o, modus); }).join("") + "</div></div>";
+    } else if (layout === "liste") {
+      root.innerHTML = kopf + '<div class="kfw-t-liste">' + auswahl.map(function (o) { return zeile(o, modus); }).join("") + "</div>" + knopf;
+    } else {
+      root.innerHTML = kopf + '<div class="kfw-liste kfw-t-drei">' + auswahl.map(function (o) { return karte(o, modus, true); }).join("") + "</div>" + knopf;
+    }
   }
 
   function katAusHash() {
