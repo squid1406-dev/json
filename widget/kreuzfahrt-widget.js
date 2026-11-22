@@ -34,6 +34,50 @@
     "Sonstiges": ""
   };
 
+  // Anbieter-Abzeichen auf dem Bild: "logo" (Logo des Anbieters) oder "name" (Name als Etikett).
+  // Lässt sich pro Seite mit data-anbieter="logo" bzw. "name" am Container überschreiben.
+  var ANBIETER_ANZEIGE = "logo";
+  // Logos liegen als Kopie im Repository (Ordner logos/), damit Besucher keine Anfragen an fremde Server schicken
+  var LOGO_BASIS = "https://cdn.jsdelivr.net/gh/squid1406-dev/json@main/logos/";
+  var LOGOS = {
+    "eisexpeditionen.de": "eisexpeditionen.de.png",
+    "kreuzfahrten-und-weltreisen.de": "kreuzfahrten-und-weltreisen.de.png"
+  };
+
+  // Illustrationen im Farbschema der Seite (wenn kein eigenes Foto hinterlegt ist)
+  var G1 = "#37685d", G2 = "#567e72", HG = "#eef3f1";
+  var WELLEN =
+    '<path d="M0 138q40-10 80 0t80 0 80 0 80 0v42H0z" fill="' + G2 + '" opacity=".35"/>' +
+    '<path d="M0 150q40-8 80 0t80 0 80 0 80 0v30H0z" fill="' + G1 + '"/>';
+  var SONNE = '<circle cx="252" cy="48" r="20" fill="' + G2 + '" opacity=".25"/>';
+  var SZENEN = {
+    schiff: SONNE +
+      '<path d="M104 132h112l-14 16h-84z" fill="' + G1 + '"/>' +
+      '<path d="M124 118h70v14h-70z" fill="' + G2 + '"/><path d="M138 106h40v12h-40z" fill="' + G2 + '" opacity=".8"/>' +
+      '<path d="M168 92h10v14h-10z" fill="' + G1 + '"/>' +
+      '<path d="M130 123h4v4h-4zm10 0h4v4h-4zm10 0h4v4h-4zm10 0h4v4h-4zm10 0h4v4h-4zm10 0h4v4h-4z" fill="#fff"/>',
+    eisberg: SONNE +
+      '<path d="M62 142l34-58 20 16 28-40 38 52 14-10 26 40z" fill="#fff" stroke="' + G2 + '" stroke-width="1.5"/>' +
+      '<path d="M144 60l-10 44 28 38h20l-14-36z" fill="' + G2 + '" opacity=".18"/>',
+    berge: SONNE +
+      '<path d="M0 142l58-62 34 30 50-52 52 58 36-28 90 54z" fill="' + G2 + '" opacity=".55"/>' +
+      '<path d="M142 58l-15 16 9-2 9 7 8-9zm-50 22l-11 12 8-2 6 5z" fill="#fff"/>',
+    fjord: SONNE +
+      '<path d="M0 142l40-50 30 22 40-40 46 68z" fill="' + G2 + '" opacity=".5"/>' +
+      '<path d="M190 142l22-34 16 10 18-24 26 48z" fill="#fff" stroke="' + G2 + '" stroke-width="1.5"/>',
+    palme: '<circle cx="110" cy="96" r="30" fill="' + G2 + '" opacity=".22"/>' +
+      '<path d="M160 142q50-30 120 0z" fill="' + G2 + '" opacity=".6"/>' +
+      '<path d="M222 136q-6-36 8-70" stroke="' + G1 + '" stroke-width="5" fill="none" stroke-linecap="round"/>' +
+      '<path d="M230 66q-24-8-42 8 22-4 42-8zm0 0q20-14 42-4-22 0-42 4zm0 0q-8-22-30-26 18 10 30 26zm0 0q14-20 36-18-20 6-36 18zm0 0q-2 22-18 34 12-16 18-34z" fill="' + G1 + '"/>',
+    leuchtturm: SONNE +
+      '<path d="M138 142l8-64h20l8 64z" fill="' + G1 + '"/>' +
+      '<path d="M142 112h28l1.6 12h-31.2zm2.4-22h23.2l1.2 9h-25.6z" fill="#fff"/>' +
+      '<path d="M144 66h24v12h-24z" fill="' + G2 + '"/><path d="M140 64h32l-16-10z" fill="' + G1 + '"/>' +
+      '<path d="M100 142q40-14 112 0z" fill="' + G2 + '" opacity=".5"/>'
+  };
+  // Motiv (aus Kategorie bzw. Titel) → Szene
+  var SZENE_FUER = { eisberg: "eisberg", berge: "berge", fjord: "fjord", palme: "palme", leuchtturm: "leuchtturm" };
+
   // Farben und Schriften von augenliebe-reiseblog.de (Pixpa-Theme)
   var CSS =
     ".kfw{--kfw-gruen:#37685d;--kfw-gruen-hell:#567e72;--kfw-gruen-flaeche:#eef3f1;--kfw-text:#14201e;--kfw-grau:#5f6b68;--kfw-rand:#dfe6e3;--kfw-rot:#9b3d32;" +
@@ -57,10 +101,12 @@
     ".kfw-karte{display:flex;flex-direction:column;border:1px solid var(--kfw-rand);padding:1.25em;background:#fff}" +
     ".kfw .kfw-bild{display:block;margin:-1.25em -1.25em 1.1em;aspect-ratio:16/9;overflow:hidden;background:#eef3f1}" +
     ".kfw .kfw-bild img{display:block;width:100%;height:100%;object-fit:cover;margin:0;max-width:none}" +
-    ".kfw-oben{display:flex;align-items:center;gap:.7em;margin-bottom:.7em}" +
-    ".kfw-icon{flex:none;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:var(--kfw-gruen-flaeche);color:var(--kfw-gruen)}" +
-    ".kfw-icon svg{width:26px;height:26px;display:block}" +
-    ".kfw-kat{align-self:center;line-height:1.4;font-size:.72em;font-weight:400;text-transform:uppercase;letter-spacing:.12em;color:var(--kfw-gruen-hell);margin:0}" +
+    ".kfw .kfw-bild{position:relative}" +
+    ".kfw-logo{position:absolute;left:12px;bottom:12px;width:42px;height:42px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.12)}" +
+    ".kfw .kfw-logo img{width:28px;height:28px;object-fit:contain;margin:0}" +
+    ".kfw-mono{font-family:var(--kfw-titel);font-size:20px;color:var(--kfw-gruen);line-height:1}" +
+    ".kfw-anbieter{position:absolute;left:12px;bottom:12px;background:#fff;color:var(--kfw-gruen);font-size:10px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;padding:.5em .8em;line-height:1.3;max-width:calc(100% - 24px);overflow-wrap:anywhere}" +
+    ".kfw-kat{align-self:flex-start;line-height:1.4;font-size:.72em;font-weight:400;text-transform:uppercase;letter-spacing:.12em;color:var(--kfw-gruen-hell);margin:0 0 .6em}" +
     ".kfw .kfw-titel{font-family:var(--kfw-titel);font-size:1.45em;font-weight:400;line-height:1.3;color:var(--kfw-gruen);margin:0 0 .75em;padding:0}" +
     ".kfw .kfw-daten{margin:0 0 1em;font-size:12px!important;font-weight:300;line-height:1.6;color:var(--kfw-grau);opacity:.8;letter-spacing:.02em}" +
     ".kfw-trenner{margin:0 .15em;opacity:.6}" +
@@ -121,19 +167,7 @@
     return o.orig && o.preis && o.orig > o.preis ? Math.round((1 - o.preis / o.orig) * 100) : 0;
   }
 
-  // Linien-Icons (24×24, Strichstärke 1.5) – Motiv nach Kategorie und Titel
-  var ICONS = {
-    schiff: '<path d="M3 15h18l-2.5 4h-13z"/><path d="M6 15v-4h12v4"/><path d="M9 11V8h6v3"/><path d="M13 8V5h2v3"/><path d="M2 21c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/>',
-    eisberg: '<path d="M4 14l4-7 3 3 3-5 6 9"/><path d="M2 14h20"/><path d="M6 14l3 6h6l3-6"/>',
-    berge: '<path d="M2 19l6-10 4 6 3-4 7 8z"/><path d="M8 9l-1.6 2.6L8 11l1.4 1.2"/><circle cx="18" cy="5" r="2"/>',
-    palme: '<path d="M12 21c0-5 1-9 0-12"/><path d="M12 9C10 6 6 6 4 8c3-.5 5 0 8 1z"/><path d="M12 9c2-3 6-3 8-1-3-.5-5 0-8 1z"/><path d="M12 9c-1-3-4-5-6-4 2 1 4 2 6 4z"/><path d="M12 9c1-3 4-5 6-4-2 1-4 2-6 4z"/><path d="M5 21h14"/>',
-    leuchtturm: '<path d="M9 21l1.5-12h3L15 21z"/><path d="M10 6h4v3h-4z"/><path d="M12 3v3"/><path d="M10.2 13h3.6M9.7 17h4.6"/><path d="M4 7l4 1M20 7l-4 1"/><path d="M5 21h14"/>',
-    kompass: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/>',
-    sonne: '<circle cx="12" cy="10" r="4"/><path d="M12 2v2M4.9 4.9l1.4 1.4M2 10h2M20 10h2M17.7 6.3l1.4-1.4"/><path d="M2 17c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/><path d="M2 21c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/>',
-    stern: '<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
-    person: '<circle cx="12" cy="7" r="3.5"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7"/>'
-  };
-
+  // Motiv nach Kategorie und Titel (bestimmt die Illustration)
   function iconFuer(o) {
     // Zuerst nach Kategorie entscheiden, dann nach Titel
     return motiv(o.kategorie) || motiv(o.titel) || "schiff";
@@ -143,7 +177,8 @@
     var t = (text || "").toLowerCase();
     if (/solo|single/.test(t)) return "person";
     if (/antarktis|eisberg|polar/.test(t)) return "eisberg";
-    if (/grönland|island|spitzbergen|arktis|norweg|fjord|alaska|südamerika|anden|patagon/.test(t)) return "berge";
+    if (/grönland|island|fjord/.test(t)) return "fjord";
+    if (/spitzbergen|arktis|norweg|alaska|südamerika|anden|patagon/.test(t)) return "berge";
     if (/südsee|karibik|papeete|tahiti|insel|seychell|malediv/.test(t)) return "palme";
     if (/transatlantik|weltreise|panama/.test(t)) return "kompass";
     if (/ostsee|nordsee|küste|archipel|europa|britisch/.test(t)) return "leuchtturm";
@@ -152,20 +187,48 @@
     return "";
   }
 
-  function icon(o) {
-    return '<span class="kfw-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-      'stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' + ICONS[iconFuer(o)] + "</svg></span>";
+  function illustration(o) {
+    // Kategorie zuerst; hat sie kein eigenes Motiv (z. B. "Black Week"), entscheidet der Titel
+    var szene = SZENEN[SZENE_FUER[motiv(o.kategorie)] || SZENE_FUER[motiv(o.titel)]] || SZENEN.schiff;
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice">' +
+      '<rect width="320" height="180" fill="' + HG + '"/>' + szene + WELLEN + "</svg>";
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
   }
 
-  function bild(o) {
+  function domain(url) {
+    var m = /^https?:\/\/(?:www\.)?([^\/:?#]+)/i.exec(url || "");
+    return m ? m[1].toLowerCase() : "";
+  }
+
+  function anbieterName(o) {
+    // "eisexpeditionen.de (Black Week)" → "eisexpeditionen.de"
+    return String(o.anbieter || domain(o.link)).replace(/\s*\(.*\)\s*$/, "");
+  }
+
+  function abzeichen(o, modus) {
+    var name = anbieterName(o);
+    if (!name) return "";
+    var datei = LOGOS[domain(o.link)];
+    if (modus === "logo") {
+      var inhalt = datei
+        ? '<img src="' + esc(LOGO_BASIS + datei) + '" alt="' + esc(name) + '" title="' + esc(name) + '" loading="lazy">'
+        : '<span class="kfw-mono" title="' + esc(name) + '">' + esc(name.charAt(0).toUpperCase()) + "</span>";
+      return '<span class="kfw-logo">' + inhalt + "</span>";
+    }
+    return '<span class="kfw-anbieter">' + esc(name) + "</span>";
+  }
+
+  function bild(o, modus) {
     var foto = sichererLink(o.bild) || sichererLink(BILDER[o.kategorie]);
-    if (!foto) return "";
-    // Lädt das Foto nicht, wird der Bildbereich ausgeblendet
-    return '<div class="kfw-bild"><img src="' + esc(foto) + '" alt="' + esc(o.titel) + '" loading="lazy" ' +
-      'onerror="this.parentNode.style.display=\'none\'"></div>';
+    var ersatz = illustration(o);
+    var img = foto
+      ? '<img src="' + esc(foto) + '" alt="' + esc(o.titel) + '" loading="lazy" ' +
+        "onerror=\"this.onerror=null;this.src='" + ersatz + "';this.alt=''\">"
+      : '<img src="' + ersatz + '" alt="" aria-hidden="true">';
+    return '<div class="kfw-bild">' + img + abzeichen(o, modus) + "</div>";
   }
 
-  function karte(o) {
+  function karte(o, modus) {
     var daten = [];
     if (o.schiff) daten.push(esc(o.schiff));
     daten.push(o.abfahrt ? esc(datum(o.abfahrt)) : "Termin auf Anfrage");
@@ -185,8 +248,8 @@
 
     return (
       '<article class="kfw-karte">' +
-      bild(o) +
-      '<div class="kfw-oben">' + icon(o) + '<span class="kfw-kat">' + esc(o.kategorie || "Sonstiges") + "</span></div>" +
+      bild(o, modus) +
+      '<span class="kfw-kat">' + esc(o.kategorie || "Sonstiges") + "</span>" +
       '<h3 class="kfw-titel">' + esc(o.titel) + "</h3>" +
       '<div class="kfw-daten">' + daten.map(function (d) { return '<span class="kfw-wert">' + d + "</span>"; }).join(' <span class="kfw-trenner">|</span> ') + "</div>" +
       (o.notiz ? '<div class="kfw-notiz">' + esc(o.notiz) + "</div>" : "") +
@@ -236,6 +299,7 @@
     });
 
     var start = katAusHash() || root.getAttribute("data-kategorie") || ALLE;
+    var modus = root.getAttribute("data-anbieter") || ANBIETER_ANZEIGE;
     var state = { kat: zaehler[start] ? start : ALLE, sort: "preis" };
 
     root.innerHTML =
@@ -269,7 +333,7 @@
         .slice()
         .sort(SORTIERUNG[state.sort]);
       liste.innerHTML = auswahl.length
-        ? auswahl.map(karte).join("")
+        ? auswahl.map(function (o) { return karte(o, modus); }).join("")
         : '<div class="kfw-leer">Aktuell keine Angebote in dieser Kategorie.</div>';
     }
 
