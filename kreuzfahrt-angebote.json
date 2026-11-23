@@ -1,5 +1,5 @@
 {
-  "stand": "2026-11-22",
+  "stand": "2026-11-23",
   "hinweis": "Alle Angebote wie in der Webanwendung (Startliste plus automatischer Abruf). Preise sind 'ab'-Angaben und können sich ändern.",
   "offers": [
     {
@@ -10,7 +10,7 @@
       "dauer": 10,
       "kategorie": "Black Week / Last-Minute",
       "kabine": "Unbekannt",
-      "preis": 3462,
+      "preis": 3461,
       "orig": 6924,
       "zuschlag": null,
       "quelle": "s-eis",
@@ -25,7 +25,7 @@
       "dauer": 10,
       "kategorie": "Südamerika",
       "kabine": "Unbekannt",
-      "preis": 3662,
+      "preis": 3661,
       "orig": 6104,
       "zuschlag": null,
       "quelle": "s-eis",
