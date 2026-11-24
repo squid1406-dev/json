@@ -178,8 +178,9 @@
   @media (max-width: 860px) { .skills { grid-template-columns: 1fr; gap: 36px; } }
 
   /* ---------- Blog & Instagram ---------- */
-  .duo { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
-  .duo a { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 52px; text-decoration: none; min-height: 50vh; }
+  #links { display: flex; align-items: center; min-height: 100vh; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; width: 100%; align-items: start; }
+  .duo a { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 52px; text-decoration: none; aspect-ratio: 1 / 1; }
   .duo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.5); transition: transform 1.6s var(--ease), filter 1s; }
   .duo a:hover img { transform: scale(1.06); filter: brightness(.7); }
   .duo .t { position: relative; z-index: 1; }
