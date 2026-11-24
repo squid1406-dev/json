@@ -90,7 +90,7 @@
   .hero .bg img.first { filter: grayscale(1) brightness(.5); animation: expose 3.2s .3s var(--ease) forwards; }
   @keyframes expose { to { filter: grayscale(0) brightness(1); } }
   .hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: radial-gradient(ellipse at center, rgb(10 16 15 / .55) 0%, rgb(10 16 15 / .25) 55%, rgb(10 16 15 / .55) 100%); }
+    background: linear-gradient(180deg, rgb(10 16 15 / .55) 0%, rgb(10 16 15 / .35) 30%, rgb(10 16 15 / .6) 70%, rgb(10 16 15 / .8) 100%), radial-gradient(ellipse at center, rgb(10 16 15 / .5) 0%, rgb(10 16 15 / .15) 60%, rgb(10 16 15 / .5) 100%); }
   .hero .center { position: relative; z-index: 2; padding: 0 20px; display: flex; flex-direction: column; align-items: center; }
   .hero .mono { width: clamp(96px, 12vw, 138px); height: auto; filter: drop-shadow(0 10px 30px rgb(0 0 0 / .35));
     opacity: 0; transform: scale(.6) rotate(-14deg); animation: monoIn 1.6s .9s var(--ease) forwards; }
@@ -98,7 +98,7 @@
   .hero h1 { font-family: var(--marke); font-weight: 200; font-size: clamp(1.7rem, 5.6vw, 4.6rem); line-height: 1.1; margin: 30px 0 0; color: #fff;
     letter-spacing: .6em; margin-right: -.6em; opacity: 0; filter: blur(10px); animation: wordIn 2s 1.4s var(--ease) forwards; text-shadow: 0 2px 24px rgb(0 0 0 / .25); }
   @keyframes wordIn { to { letter-spacing: .16em; margin-right: -.16em; opacity: 1; filter: none; } }
-  .hero .claim { font-family: var(--marke); font-weight: 300; font-size: clamp(.8rem, 1.9vw, 1.25rem); letter-spacing: .32em; margin: 16px -.32em 0 0; color: var(--claim);
+  .hero .claim { font-family: var(--marke); font-weight: 400; font-size: clamp(.8rem, 1.9vw, 1.25rem); letter-spacing: .32em; margin: 16px -.32em 0 0; color: #d9ebe6; text-shadow: 0 1px 14px rgb(0 0 0 / .6);
     text-transform: uppercase; opacity: 0; animation: fade 1.4s 2.6s forwards; }
   @keyframes fade { to { opacity: 1; } }
   .hero .dots { position: absolute; z-index: 2; bottom: 56px; left: 50%; translate: -50% 0; display: flex; gap: 10px; }
@@ -224,12 +224,12 @@
 <main>
   <section class="chapter hero" id="start" data-meta="ƒ/8 · 1/250 · ISO 100">
     <div class="shade"></div>
-    <!-- ANPASSEN: Hintergrundbilder der oberen Box (Querformat, mind. 2400 px breit).
+    <!-- Hintergrundbilder der oberen Box (Querformat, mind. 2000 px breit).
          Ein Bild genügt; bei mehreren wird automatisch überblendet. -->
     <div class="bg" id="heroBg">
-      <img class="first on" src="bilder/hero.jpg" alt="">
-      <img src="bilder/foto-01.jpg" alt="">
-      <img src="bilder/foto-07.jpg" alt="">
+      <img class="first on" src="bilder/hero-1.jpg" alt="St. Peter-Ording bei Sonnenuntergang">
+      <img src="bilder/hero-2.jpg" alt="Strandkörbe auf dem Holzsteg bei Sonnenaufgang">
+      <img src="bilder/hero-3.jpg" alt="Mont-Saint-Michel bei Ebbe">
     </div>
     <div class="center">
       <img class="mono" src="bilder/logo-sg.png" alt="" width="138" height="147">
