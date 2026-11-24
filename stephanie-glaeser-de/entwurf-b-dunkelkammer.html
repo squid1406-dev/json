@@ -72,7 +72,7 @@
   .chapter.tall { position: relative; }
   @media (max-width: 860px) { .chapter { position: relative; transform: none !important; } .chapter .shade { display: none; } }
   .inner { max-width: 1240px; margin: 0 auto; padding: 140px 52px 110px; position: relative; }
-  @media (max-width: 600px) { .inner { padding: 110px 20px 80px; } }
+  @media (max-width: 600px) { .hero .panel { padding: 40px 36px; } .inner { padding: 110px 20px 80px; } }
 
   /* Text-Einblendung: Zeilen wie aus der Entwicklerschale */
   .develop > * { opacity: 0; filter: blur(8px); transform: translateY(24px); transition: opacity 1.1s var(--ease), filter 1.1s var(--ease), transform 1.1s var(--ease); }
@@ -92,14 +92,9 @@
   .hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
     background: linear-gradient(180deg, rgb(10 16 15 / .55) 0%, rgb(10 16 15 / .35) 30%, rgb(10 16 15 / .6) 70%, rgb(10 16 15 / .8) 100%), radial-gradient(ellipse at center, rgb(10 16 15 / .5) 0%, rgb(10 16 15 / .15) 60%, rgb(10 16 15 / .5) 100%); }
   .hero .center { position: relative; z-index: 2; padding: 0 20px; display: flex; flex-direction: column; align-items: center; }
-  .hero .mono { width: clamp(96px, 12vw, 138px); height: auto; filter: drop-shadow(0 10px 30px rgb(0 0 0 / .35));
-    opacity: 0; transform: scale(.6) rotate(-14deg); animation: monoIn 1.6s .9s var(--ease) forwards; }
-  @keyframes monoIn { to { opacity: 1; transform: none; } }
-  .hero h1 { font-family: var(--marke); font-weight: 200; font-size: clamp(1.7rem, 5.6vw, 4.6rem); line-height: 1.1; margin: 30px 0 0; color: #fff;
-    letter-spacing: .6em; margin-right: -.6em; opacity: 0; filter: blur(10px); animation: wordIn 2s 1.4s var(--ease) forwards; text-shadow: 0 2px 24px rgb(0 0 0 / .25); }
-  @keyframes wordIn { to { letter-spacing: .16em; margin-right: -.16em; opacity: 1; filter: none; } }
-  .hero .claim { font-family: var(--marke); font-weight: 400; font-size: clamp(.8rem, 1.9vw, 1.25rem); letter-spacing: .32em; margin: 16px -.32em 0 0; color: #d9ebe6; text-shadow: 0 1px 14px rgb(0 0 0 / .6);
-    text-transform: uppercase; opacity: 0; animation: fade 1.4s 2.6s forwards; }
+  .hero .panel { background: #fff; padding: 56px 64px; box-shadow: 0 24px 60px rgb(0 0 0 / .35); opacity: 0; transform: translateY(18px); animation: panelIn 1.4s .6s var(--ease) forwards; }
+  .hero .panel img { display: block; width: clamp(200px, 40vw, 280px); height: auto; }
+  @keyframes panelIn { to { opacity: 1; transform: none; } }
   @keyframes fade { to { opacity: 1; } }
   .hero .dots { position: absolute; z-index: 2; bottom: 56px; left: 50%; translate: -50% 0; display: flex; gap: 10px; }
   .hero .dots button { width: 28px; height: 2px; padding: 0; border: 0; background: rgb(255 255 255 / .35); cursor: pointer; position: relative; overflow: hidden; }
@@ -110,8 +105,8 @@
   .shutter i:first-child { top: 0; } .shutter i:last-child { bottom: 0; }
   .shutter.open i:first-child { transform: translateY(-100%); } .shutter.open i:last-child { transform: translateY(100%); }
   @media (prefers-reduced-motion: reduce) {
-    .hero .bg img, .hero .mono, .hero h1, .hero .claim { animation: none !important; transition: none !important; filter: none !important; transform: none !important; }
-    .hero .mono, .hero h1, .hero .claim { opacity: 1; letter-spacing: .16em; }
+    .hero .bg img, .hero .panel { animation: none !important; transition: none !important; filter: none !important; transform: none !important; }
+    .hero .panel { opacity: 1; }
     .shutter { display: none; }
   }
 
@@ -232,9 +227,9 @@
       <img src="bilder/hero-3.jpg" alt="Mont-Saint-Michel bei Ebbe">
     </div>
     <div class="center">
-      <img class="mono" src="bilder/logo-sg.png" alt="" width="138" height="147">
-      <h1>STEPHANIE.GLÄSER</h1>
-      <p class="claim">Fotografie &amp; Webdesign</p>
+      <div class="panel">
+        <img src="bilder/ornament-linie.png" alt="" width="280" height="22">
+      </div>
     </div>
     <div class="dots" id="heroDots" aria-label="Hintergrundbild wählen"></div>
   </section>
