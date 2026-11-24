@@ -92,8 +92,10 @@
   .hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
     background: linear-gradient(180deg, rgb(10 16 15 / .55) 0%, rgb(10 16 15 / .35) 30%, rgb(10 16 15 / .6) 70%, rgb(10 16 15 / .8) 100%), radial-gradient(ellipse at center, rgb(10 16 15 / .5) 0%, rgb(10 16 15 / .15) 60%, rgb(10 16 15 / .5) 100%); }
   .hero .center { position: absolute; left: 0; right: 0; bottom: 108px; z-index: 2; padding: 0 20px; display: flex; flex-direction: column; align-items: center; }
-  .hero .title { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 300; font-size: clamp(2.6rem, 6.4vw, 5.6rem); line-height: 1.02; margin: 0 auto; max-width: 16ch; color: #fff;
-    text-shadow: 0 2px 30px rgb(0 0 0 / .35); opacity: 0; transform: translateY(18px); animation: panelIn 1.4s .6s var(--ease) forwards; }
+  .hero .slogans { display: grid; justify-items: center; }
+  .hero .title { grid-area: 1 / 1; font-family: "Cormorant Garamond", Georgia, serif; font-weight: 300; font-size: clamp(2.6rem, 6.4vw, 5.6rem); line-height: 1.02; margin: 0; color: #fff; max-width: 16ch; text-align: center;
+    text-shadow: 0 2px 30px rgb(0 0 0 / .35); opacity: 0; transform: translateY(14px); transition: opacity 1.4s var(--ease), transform 1.4s var(--ease); }
+  .hero .title.on { opacity: 1; transform: none; }
   .hero .title em { font-style: italic; color: #a9d3c6; font-weight: 300; }
   .hero .sub { font-family: var(--schrift); font-weight: 400; font-size: clamp(.8rem, 1.7vw, 1.05rem); letter-spacing: .42em; text-transform: uppercase; color: #d9ebe6;
     margin: 22px -.42em 0 0; text-shadow: 0 1px 14px rgb(0 0 0 / .6); opacity: 0; animation: fade 1.4s 1.1s forwards; }
@@ -109,7 +111,8 @@
   .shutter.open i:first-child { transform: translateY(-100%); } .shutter.open i:last-child { transform: translateY(100%); }
   @media (prefers-reduced-motion: reduce) {
     .hero .bg img, .hero .title, .hero .sub { animation: none !important; transition: none !important; filter: none !important; transform: none !important; }
-    .hero .title, .hero .sub { opacity: 1; }
+    .hero .title { opacity: 0; }
+    .hero .title.on, .hero .sub { opacity: 1; }
     .shutter { display: none; }
   }
 
@@ -230,7 +233,11 @@
       <img src="bilder/hero-3.jpg" alt="Mont-Saint-Michel bei Ebbe">
     </div>
     <div class="center">
-      <h1 class="title">Zwischen Licht und <em>Horizont</em></h1>
+      <div class="slogans">
+        <h1 class="title on">Wo der Tag im <em>Meer</em> versinkt</h1>
+        <h1 class="title">Licht, das <em>Geschichten</em> webt</h1>
+        <h1 class="title">Momente, die <em>bleiben</em></h1>
+      </div>
       <p class="sub">Fotografie &amp; Webdesign</p>
     </div>
     <div class="dots" id="heroDots" aria-label="Hintergrundbild wählen"></div>
@@ -371,6 +378,7 @@
 
   // Hintergrundbilder der oberen Box wechseln (alle 6 s)
   const heroImgs = [...document.querySelectorAll('#heroBg img')];
+  const heroTitles = [...document.querySelectorAll('.hero .title')];
   const dotsEl = document.getElementById('heroDots');
   let heroIdx = 0, heroTimer;
   const DUR = 6000;
@@ -378,6 +386,7 @@
     heroImgs[heroIdx].classList.remove('on');
     heroIdx = (i + heroImgs.length) % heroImgs.length;
     heroImgs[heroIdx].classList.add('on');
+    heroTitles.forEach((t, k) => t.classList.toggle('on', k === heroIdx));
     [...dotsEl.children].forEach((d, k) => { d.classList.remove('on'); if (k === heroIdx) { void d.offsetWidth; d.classList.add('on'); } });
     clearTimeout(heroTimer); heroTimer = setTimeout(() => heroShow(heroIdx + 1), DUR);
   }
