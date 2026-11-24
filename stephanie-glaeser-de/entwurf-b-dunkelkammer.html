@@ -183,7 +183,7 @@
   .duo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.5); transition: transform 1.6s var(--ease), filter 1s; }
   .duo a:hover img { transform: scale(1.06); filter: brightness(.7); }
   .duo .t { position: relative; z-index: 1; }
-  .duo h3 { font-family: var(--script); font-weight: 400; font-size: clamp(3rem, 7vw, 5.4rem); line-height: 1; margin: 0 0 14px; }
+  .duo h3 { font-family: var(--script); font-weight: 400; font-size: clamp(2.4rem, 4.4vw, 3.6rem); line-height: 1.1; margin: 0 0 14px; overflow-wrap: anywhere; }
   .duo .go { font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; display: inline-flex; gap: 12px; align-items: center; }
   .duo .go::after { content: ""; width: 40px; height: 1px; background: currentColor; transition: width .6s var(--ease); }
   .duo a:hover .go::after { width: 80px; }
@@ -325,14 +325,14 @@
   <section class="chapter" id="links" data-meta="ƒ/16 · 1/30 · ISO 100">
     <div class="shade"></div>
     <div class="duo">
-      <a href="https://augenliebe-reiseblog.de/" target="_blank" rel="noopener">
-        <img src="bilder/foto-05.jpg" alt="">
-        <div class="t"><p class="kicker">05 — Reiseblog</p><h3>Augenliebe</h3><span class="go">augenliebe-reiseblog.de</span></div>
+      <a href="https://augenliebe-reiseblog.de/" target="_blank" rel="noopener" aria-label="Reiseblog Augenliebe öffnen">
+        <img src="bilder/hero-3.jpg" alt="Mont-Saint-Michel bei Ebbe">
+        <div class="t"><p class="kicker">Reiseblog</p><h3>Augenliebe</h3><span class="go">augenliebe-reiseblog.de</span></div>
       </a>
-      <!-- ANPASSEN: Instagram-Benutzername -->
-      <a href="https://www.instagram.com/BENUTZERNAME/" target="_blank" rel="noopener">
-        <img src="bilder/foto-03.jpg" alt="">
-        <div class="t"><p class="kicker">@BENUTZERNAME</p><h3>Instagram</h3><span class="go">Profil ansehen</span></div>
+      <!-- ANPASSEN: Instagram-Benutzername in href und Text -->
+      <a href="https://www.instagram.com/BENUTZERNAME/" target="_blank" rel="noopener" aria-label="Instagram-Profil öffnen">
+        <img src="bilder/hero-2.jpg" alt="Strandkörbe auf dem Holzsteg bei Sonnenaufgang">
+        <div class="t"><p class="kicker">Instagram</p><h3>@BENUTZERNAME</h3><span class="go">Profil ansehen</span></div>
       </a>
     </div>
   </section>
