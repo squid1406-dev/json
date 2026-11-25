@@ -188,6 +188,16 @@
   @media (max-width: 1100px) { .pf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 600px) { .pf-grid { grid-template-columns: 1fr; gap: 24px; } }
 
+  /* Reiseblog & Instagram: Variante 8 (Miniaturen mit Rahmen) */
+  .link-frame { background: #0b1211; padding: 30px 30px 26px; box-shadow: inset 0 0 0 1px var(--linie); display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .link-item { display: block; color: inherit; text-decoration: none; min-width: 0; }
+  .link-item img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; margin-bottom: 18px; transition: transform 1.2s var(--ease); }
+  .link-item:hover img { transform: scale(1.03); }
+  .link-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .link-name { font-family: var(--titel); font-size: clamp(1.3rem, 2.2vw, 1.9rem); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .link-go { font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gruen); border-bottom: 1px solid var(--gruen); padding-bottom: 3px; white-space: nowrap; }
+  @media (max-width: 760px) { .link-frame { grid-template-columns: 1fr; gap: 26px; padding: 22px; } }
+
   /* ---------- Lebenslauf ---------- */
   .cv-row { display: grid; grid-template-columns: 230px 1fr; gap: 36px; padding: 30px 0; border-top: 1px solid var(--linie); align-items: baseline; position: relative; }
   .cv-row::after { content: ""; position: absolute; left: 0; top: -1px; height: 1px; width: 100%; background: var(--gruen); transform: scaleX(0); transform-origin: left; transition: transform 1.2s var(--ease); }
@@ -451,16 +461,18 @@
 
   <section class="chapter tall" id="links" data-meta="ƒ/16 · 1/30 · ISO 100">
     <div class="shade"></div>
-    <div class="duo">
-      <a href="https://augenliebe-reiseblog.de/" target="_blank" rel="noopener" aria-label="Reiseblog Augenliebe öffnen">
-        <img src="bilder/hero-3.jpg" alt="Mont-Saint-Michel bei Ebbe">
-        <div class="t"><p class="kicker">Reiseblog</p><h3>Augenliebe</h3><span class="go">augenliebe-reiseblog.de</span></div>
-      </a>
-      <!-- ANPASSEN: Instagram-Benutzername in href und Text -->
-      <a href="https://www.instagram.com/stephanie.glaeser/" target="_blank" rel="noopener" aria-label="Instagram-Profil öffnen">
-        <img src="bilder/hero-2.jpg" alt="Strandkörbe auf dem Holzsteg bei Sonnenaufgang">
-        <div class="t"><p class="kicker">Instagram</p><h3>@stephanie.glaeser</h3><span class="go">Profil ansehen</span></div>
-      </a>
+    <div class="inner">
+      <div class="develop" data-reveal><p class="kicker">Mehr von mir</p><h2>Reiseblog <em>&amp;</em> Instagram</h2></div>
+      <div class="link-frame develop" data-reveal>
+        <a class="link-item" href="https://augenliebe-reiseblog.de/" target="_blank" rel="noopener">
+          <img src="bilder/hero-3.jpg" alt="Mont-Saint-Michel bei Ebbe">
+          <div class="link-row"><span class="link-name">Augenliebe</span><span class="link-go">Reiseblog →</span></div>
+        </a>
+        <a class="link-item" href="https://www.instagram.com/stephanie.glaeser/" target="_blank" rel="noopener">
+          <img src="bilder/hero-2.jpg" alt="Strandkörbe auf dem Holzsteg bei Sonnenaufgang">
+          <div class="link-row"><span class="link-name">@stephanie.glaeser</span><span class="link-go">Instagram →</span></div>
+        </a>
+      </div>
     </div>
   </section>
 
