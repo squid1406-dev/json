@@ -95,6 +95,7 @@
   .hero .bg .slide.on { opacity: 1; transform: scale(1); }
   .hero .bg .slide.first { animation: expose 3.2s .3s var(--ease) forwards; }
   .hero .bg .slide img { position: absolute; top: 0; bottom: 0; height: 100%; object-fit: cover; }
+  .hero .bg .slide img.full { left: 0; width: 100%; clip-path: none; object-position: 50% 50%; }
   .hero .bg .slide img.p1 { left: 0; width: 27%; object-position: 30% 50%; clip-path: polygon(0 0, 100% 0, 77.8% 100%, 0 100%); }
   .hero .bg .slide img.p2 { left: 21%; width: 56%; object-position: 50% 20%; clip-path: polygon(10.7% 0, 100% 0, 89.3% 100%, 0 100%); }
   .hero .bg .slide img.p3 { left: 71%; width: 29%; object-position: 70% 50%; clip-path: polygon(20.7% 0, 100% 0, 100% 100%, 0 100%); }
@@ -290,7 +291,7 @@
     <!-- Hintergrundbilder der oberen Box (Querformat, mind. 2000 px breit).
          Ein Bild genügt; bei mehreren wird automatisch überblendet. -->
     <div class="bg" id="heroBg">
-      <div class="slide first on"><img class="p1" src="bilder/slider-3.jpg" alt="Gotisches Fenster im Inneren des Klosters"><img class="p2" src="bilder/slider-1.jpg" alt="Mont-Saint-Michel bei Ebbe mit Spiegelung"><img class="p3" src="bilder/slider-2.jpg" alt="Kreuzgang des Klosters Mont-Saint-Michel"></div>
+      <div class="slide first on"><img class="full" src="bilder/collage-strand.jpg" alt="Strandmotive: Pfahlbau, Boje und Strandkörbe am Steg"></div>
       <div class="slide"><img class="p1" src="bilder/slider-3.jpg" alt="Gotisches Fenster im Inneren des Klosters"><img class="p2" src="bilder/slider-1.jpg" alt="Mont-Saint-Michel bei Ebbe mit Spiegelung"><img class="p3" src="bilder/slider-2.jpg" alt="Kreuzgang des Klosters Mont-Saint-Michel"></div>
       <div class="slide"><img class="p1" src="bilder/slider-3.jpg" alt="Gotisches Fenster im Inneren des Klosters"><img class="p2" src="bilder/slider-1.jpg" alt="Mont-Saint-Michel bei Ebbe mit Spiegelung"><img class="p3" src="bilder/slider-2.jpg" alt="Kreuzgang des Klosters Mont-Saint-Michel"></div>
     </div>
