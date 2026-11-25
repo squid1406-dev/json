@@ -122,6 +122,7 @@
 
   /* ---------- Über mich ---------- */
   @media (min-width: 761px) { .bg-icon { right: 15%; } }
+  @media (max-width: 1100px) { #links .duo a { padding: 28px 24px; } }
   @media (min-width: 761px) { .chapter .inner, #links .duo { max-width: 70%; margin-left: auto; margin-right: auto; } #links .duo { width: 70%; } .contact .inner { width: 70%; } }
   .about { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; row-gap: 56px; align-items: start; }
   .about .pic { grid-row: 1; grid-column: 1; position: relative; top: -50px; }
@@ -223,8 +224,8 @@
   .duo .t { position: relative; z-index: 1; }
   .duo a { container-type: inline-size; }
   .duo h3 { font-family: var(--script); font-weight: 400; font-size: min(16cqw, 5.4rem); line-height: 1.05; margin: 0 0 14px; white-space: nowrap; }
-  .duo .go { font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; display: inline-flex; gap: 12px; align-items: center; }
-  .duo .go::after { content: ""; width: 40px; height: 1px; background: currentColor; transition: width .6s var(--ease); }
+  .duo .go { font-size: min(.78rem, 4.6cqw); letter-spacing: .16em; text-transform: uppercase; display: inline-flex; gap: 12px; align-items: center; white-space: nowrap; }
+  .duo .go::after { content: ""; width: min(40px, 10cqw); height: 1px; background: currentColor; transition: width .6s var(--ease); }
   .duo a:hover .go::after { width: 80px; }
   @media (max-width: 760px) { .duo { grid-template-columns: 1fr; } .duo a { padding: 32px 24px; } }
 
