@@ -194,6 +194,10 @@
   .link-art { aspect-ratio: 3 / 2; background: #0b1211; color: var(--gruen); margin-bottom: 18px; display: flex; align-items: center; justify-content: center; }
   .link-art svg { width: 78%; height: 78%; }
   .link-logo-wrap { height: 124px; display: flex; align-items: center; }
+  .link-wordmark { display: flex; flex-direction: column; align-items: flex-start; color: #fff; line-height: 1; padding-left: 6%; }
+  .link-wordmark .wm-sub { font-family: "Josefin Sans", Arial, sans-serif; font-weight: 400; font-size: clamp(.55rem, .9vw, .7rem); letter-spacing: .1em; text-transform: uppercase; margin-left: 12%; white-space: nowrap; }
+  .link-wordmark .wm-script { font-family: "Great Vibes", cursive; font-size: clamp(2.6rem, 4.6vw, 3.8rem); line-height: 1; margin: 2px 0 0; }
+  .link-wordmark .wm-blog { font-family: "Josefin Sans", Arial, sans-serif; font-weight: 600; font-size: clamp(.6rem, 1vw, .74rem); letter-spacing: .18em; text-transform: uppercase; margin-left: 52%; margin-top: 4px; }
   .link-item .link-logo { height: 124px; width: auto; max-width: 100%; aspect-ratio: auto; margin: 0; object-fit: contain; display: block; }
   .link-item > .link-row, .link-item > .link-logo-wrap { min-height: 124px; }
   .link-item > .link-row { align-items: center; }
@@ -476,7 +480,7 @@
       <div class="link-frame develop" data-reveal>
         <a class="link-item" href="https://augenliebe-reiseblog.de/" target="_blank" rel="noopener">
           <img src="bilder/reiseblog-kamera.jpg" alt="Analoge Kamera auf den Knien">
-          <div class="link-logo-wrap"><img class="link-logo" src="bilder/augenliebe-schriftzug.png" alt="Augenliebe Reiseblog – Reisen und Fotografie"></div>
+          <div class="link-logo-wrap"><div class="link-wordmark" role="img" aria-label="Augenliebe Reiseblog – Reisen und Fotografie"><span class="wm-sub">Reisen und Fotografie</span><span class="wm-script">Augenliebe</span><span class="wm-blog">Reiseblog</span></div></div>
         </a>
         <a class="link-item" href="https://www.instagram.com/stephanie.glaeser/" target="_blank" rel="noopener">
           <img src="bilder/hero-2.jpg" alt="Strandkörbe auf dem Holzsteg bei Sonnenaufgang">
