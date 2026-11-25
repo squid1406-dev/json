@@ -196,17 +196,21 @@
   .contact .big em { font-family: var(--script); font-style: normal; color: var(--gruen); font-weight: 400; font-size: 1.2em; }
   .contact-mono { width: 84px; height: auto; margin: 0 auto 26px; }
   .contact .inner { padding-bottom: 40px; }
-  .cf { width: 100%; max-width: 440px; margin: 40px auto 36px; text-align: left; display: grid; gap: 20px; }
+  .cf { width: 100%; max-width: 760px; margin: 36px auto 0; text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 40px; }
+  .cf .full { grid-column: 1 / -1; }
+  .cf-foot { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  @media (max-width: 600px) { .cf { grid-template-columns: 1fr; } }
   .cf label { display: block; font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; color: var(--grau); }
   .cf input, .cf textarea { display: block; width: 100%; margin-top: 8px; background: transparent; border: 0; border-bottom: 1px solid rgb(255 255 255 / .35); color: var(--text); font: inherit; font-size: 1rem; letter-spacing: 0; text-transform: none; padding: 8px 0; border-radius: 0; }
   .cf input:focus, .cf textarea:focus { outline: none; border-bottom-color: var(--gruen); }
-  .cf textarea { resize: vertical; min-height: 96px; }
+  .cf textarea { resize: vertical; min-height: 72px; }
   .cf-check { display: flex; gap: 10px; align-items: flex-start; font-size: .85rem; letter-spacing: .04em; text-transform: none; line-height: 1.5; }
   .cf-check input { width: auto; margin: 4px 0 0; }
   .cf-check a { color: var(--gruen); }
-  .cf-btn { justify-self: start; background: none; border: 1px solid #fff; color: #fff; font: inherit; font-size: .8rem; letter-spacing: .28em; text-transform: uppercase; padding: 16px 30px; cursor: pointer; transition: background .4s, color .4s; }
+  .cf-btn { background: none; border: 1px solid #fff; color: #fff; font: inherit; font-size: .8rem; letter-spacing: .28em; text-transform: uppercase; padding: 16px 30px; cursor: pointer; transition: background .4s, color .4s; }
   .cf-btn:hover, .cf-btn:focus-visible { background: #fff; color: var(--gruen); }
   .cf-hint { margin: 0; font-size: .8rem; letter-spacing: .02em; color: var(--grau); }
+  .cf-check { margin: 0; }
   .contact .mail { font-size: clamp(1rem, 3vw, 1.4rem); letter-spacing: .12em; text-decoration: none; border-bottom: 1px solid var(--gruen); padding-bottom: 6px; word-break: break-all; }
   .contact .mail:hover { color: var(--gruen); }
   .contact footer { position: relative; margin-top: 64px; display: flex; justify-content: center; gap: 26px; flex-wrap: wrap; font-size: .72rem; letter-spacing: .26em; text-transform: uppercase; color: var(--grau); padding: 0 20px; }
@@ -353,15 +357,17 @@
     <div class="inner develop" data-reveal>
       <p class="kicker">06 — Kontakt</p>
       <p class="big">Lass uns <em>Momente</em><br>festhalten.</p>
+      <a class="mail" href="mailto:kontakt@stephanie-glaeser.de">kontakt@stephanie-glaeser.de</a>
       <form class="cf" id="cf">
         <label>Name <input name="name" required autocomplete="name"></label>
         <label>E-Mail <input type="email" name="email" required autocomplete="email"></label>
-        <label>Nachricht <textarea name="message" rows="4" required></textarea></label>
-        <label class="cf-check"><input type="checkbox" required> Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen.</label>
-        <button type="submit" class="cf-btn">Nachricht senden</button>
-        <p class="cf-hint">Die Nachricht öffnet sich in deinem E-Mail-Programm. Die Website speichert sie nicht.</p>
+        <label class="full">Nachricht <textarea name="message" rows="3" required></textarea></label>
+        <div class="cf-foot full">
+          <label class="cf-check"><input type="checkbox" required> Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen.</label>
+          <button type="submit" class="cf-btn">Nachricht senden</button>
+        </div>
+        <p class="cf-hint full">Die Nachricht öffnet sich in deinem E-Mail-Programm. Die Website speichert sie nicht.</p>
       </form>
-      <a class="mail" href="mailto:kontakt@stephanie-glaeser.de">kontakt@stephanie-glaeser.de</a>
     </div>
     <footer>
       <span>© <span class="year">2026</span> Stephanie.Gläser · Fotografie &amp; Webdesign</span>
