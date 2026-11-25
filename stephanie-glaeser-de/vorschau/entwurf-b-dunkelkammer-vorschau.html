@@ -121,7 +121,7 @@
   }
 
   /* ---------- Über mich ---------- */
-  #ueber-mich .inner { max-width: 80%; }
+  @media (min-width: 761px) { .chapter .inner, #links .duo { max-width: 80%; margin-left: auto; margin-right: auto; } #links .duo { width: 80%; } .contact .inner { width: 80%; } }
   .about { display: grid; grid-template-columns: 1.2fr 1fr; column-gap: 72px; row-gap: 56px; align-items: start; }
   .about .pic { grid-row: 1; grid-column: 1; position: relative; top: -50px; }
   .about .about-head { grid-row: 1; grid-column: 2; }
@@ -173,7 +173,7 @@
   .pf-media { display: flex; align-items: center; justify-content: center; }
   .pf-icon { height: 80%; width: auto; max-width: 92%; color: var(--gruen); opacity: .9; }
   .pf-txt { padding: 26px 26px 30px; }
-  .pf-k { font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gruen); margin: 0 0 10px; font-weight: 400; }
+  .pf-k { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gruen); margin: 0 0 10px; font-weight: 400; }
   .pf-txt h3 { font-family: var(--titel); font-weight: 400; font-size: 1.7rem; line-height: 1.15; margin: 0 0 12px; color: var(--text); }
   .pf-txt p { margin: 0; color: var(--grau); font-size: .98rem; }
   @media (max-width: 1100px) { .pf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
