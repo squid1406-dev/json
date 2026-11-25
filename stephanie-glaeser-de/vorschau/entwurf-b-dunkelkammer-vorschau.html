@@ -86,7 +86,8 @@
   @media (prefers-reduced-motion: reduce) { .develop > * { opacity: 1; filter: none; transform: none; transition: none; } }
 
   /* ---------- Hero ---------- */
-  .hero { display: grid; place-items: center; text-align: center; }
+  .hero { display: grid; place-items: center; text-align: center; height: 66vh; min-height: 420px; width: 70%; margin: 100px auto 96px; border-radius: 4px; overflow: hidden; }
+  @media (max-width: 760px) { .hero { width: 100%; height: 60vh; min-height: 380px; margin: 84px 0 64px; border-radius: 0; } }
   /* Hintergrundbilder: weiche Überblendung mit langsamer Kamerafahrt */
   .hero .bg { position: absolute; inset: 0; background: #0f1715; }
   .hero .bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.12); transition: opacity 2.4s ease, transform 9s linear; }
@@ -279,7 +280,7 @@
 </header>
 
 <main>
-  <section class="chapter hero" id="start" data-meta="ƒ/8 · 1/250 · ISO 100">
+  <section class="chapter tall hero" id="start" data-meta="ƒ/8 · 1/250 · ISO 100">
     <div class="shade"></div>
     <!-- Hintergrundbilder der oberen Box (Querformat, mind. 2000 px breit).
          Ein Bild genügt; bei mehreren wird automatisch überblendet. -->
@@ -468,7 +469,7 @@
         <label>E-Mail <input type="email" name="email" required autocomplete="email"></label>
         <label class="full">Nachricht <textarea name="message" rows="3" required></textarea></label>
         <div class="cf-foot full">
-          <label class="cf-check"><input type="checkbox" required> Ich habe die <a href="https://claude.ai/artifact/AHUrwsBAPn6foyVUBum96X">Datenschutzerklärung</a> gelesen.</label>
+          <label class="cf-check"><input type="checkbox" required> Ich habe die <a href="#">Datenschutzerklärung</a> gelesen.</label>
           <button type="submit" class="cf-btn">Nachricht senden</button>
         </div>
         <p class="cf-hint full">Die Nachricht öffnet sich in deinem E-Mail-Programm. Die Website speichert sie nicht.</p>
@@ -478,8 +479,8 @@
       <span>© <span class="year">2026</span> Stephanie.Gläser · Fotografie &amp; Webdesign</span>
       <a href="https://augenliebe-reiseblog.de/" target="_blank" rel="noopener">Reiseblog</a>
       <a href="https://www.instagram.com/stephanie.glaeser/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://claude.ai/artifact/3LSmcSh83AXALhQMdmpCbu">Impressum</a>
-      <a href="https://claude.ai/artifact/AHUrwsBAPn6foyVUBum96X">Datenschutz</a>
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
     </footer>
   </section>
 </main>
