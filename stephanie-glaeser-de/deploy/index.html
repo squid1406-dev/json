@@ -87,13 +87,18 @@
 
   /* ---------- Hero ---------- */
   .hero { display: grid; place-items: center; text-align: center; width: calc(100% - 104px); min-height: 0; height: min(calc((100vw - 104px) * 10 / 17 - 50px), calc(100vh - 170px)); margin: 96px auto 96px; border-radius: 4px; overflow: hidden; }
+  @media (min-width: 821px) { #start .center { left: 24%; right: 26%; } }
   @media (max-width: 820px) { .hero { width: calc(100% - 48px); height: auto; aspect-ratio: 4 / 5; margin: 84px auto 64px; } }
   /* Hintergrundbilder: weiche Überblendung mit langsamer Kamerafahrt */
   .hero .bg { position: absolute; inset: 0; background: #0f1715; }
-  .hero .bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.12); transition: opacity 2.4s ease, transform 9s linear; }
-  .hero .bg img.on { opacity: 1; transform: scale(1); }
-  .hero .bg img.first { filter: grayscale(1) brightness(.5); animation: expose 3.2s .3s var(--ease) forwards; }
-  @keyframes expose { to { filter: grayscale(0) brightness(1); } }
+  .hero .bg .slide { position: absolute; inset: 0; opacity: 0; transform: scale(1.06); transition: opacity 2.4s ease, transform 9s linear; }
+  .hero .bg .slide.on { opacity: 1; transform: scale(1); }
+  .hero .bg .slide.first { animation: expose 3.2s .3s var(--ease) forwards; }
+  .hero .bg .slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero .bg .slide img.p1 { clip-path: polygon(0 0, 27% 0, 21% 100%, 0 100%); }
+  .hero .bg .slide img.p2 { clip-path: polygon(27% 0, 77% 0, 71% 100%, 21% 100%); }
+  .hero .bg .slide img.p3 { clip-path: polygon(77% 0, 100% 0, 100% 100%, 71% 100%); }
+  @keyframes expose { from { filter: grayscale(1) brightness(.5); } to { filter: grayscale(0) brightness(1); } }
   .hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
     background: linear-gradient(180deg, rgb(10 16 15 / .55) 0%, rgb(10 16 15 / .35) 30%, rgb(10 16 15 / .6) 70%, rgb(10 16 15 / .8) 100%), radial-gradient(ellipse at center, rgb(10 16 15 / .5) 0%, rgb(10 16 15 / .15) 60%, rgb(10 16 15 / .5) 100%); }
   .hero .center { position: absolute; left: 0; right: 0; bottom: 108px; z-index: 2; padding: 0 20px; display: flex; flex-direction: column; align-items: center; }
@@ -115,7 +120,7 @@
   .shutter i:first-child { top: 0; } .shutter i:last-child { bottom: 0; }
   .shutter.open i:first-child { transform: translateY(-100%); } .shutter.open i:last-child { transform: translateY(100%); }
   @media (prefers-reduced-motion: reduce) {
-    .hero .bg img, .hero .title, .hero .sub { animation: none !important; transition: none !important; filter: none !important; transform: none !important; }
+    .hero .bg .slide, .hero .title, .hero .sub { animation: none !important; transition: none !important; filter: none !important; transform: none !important; }
     .hero .title { opacity: 0; }
     .hero .title.on, .hero .sub { opacity: 1; }
     .shutter { display: none; }
@@ -285,9 +290,9 @@
     <!-- Hintergrundbilder der oberen Box (Querformat, mind. 2000 px breit).
          Ein Bild genügt; bei mehreren wird automatisch überblendet. -->
     <div class="bg" id="heroBg">
-      <img class="first on" src="bilder/hero-1.jpg" alt="St. Peter-Ording bei Sonnenuntergang">
-      <img src="bilder/hero-2.jpg" alt="Strandkörbe auf dem Holzsteg bei Sonnenaufgang">
-      <img src="bilder/hero-3.jpg" alt="Mont-Saint-Michel bei Ebbe">
+      <div class="slide first on"><img class="p1" src="bilder/hero-1.jpg" alt="St. Peter-Ording bei Sonnenuntergang"><img class="p2" src="bilder/hero-2.jpg" alt="Strandkörbe auf dem Holzsteg bei Sonnenaufgang"><img class="p3" src="bilder/hero-3.jpg" alt="Mont-Saint-Michel bei Ebbe"></div>
+      <div class="slide"><img class="p1" src="bilder/hero-2.jpg" alt="Strandkörbe auf dem Holzsteg bei Sonnenaufgang"><img class="p2" src="bilder/hero-3.jpg" alt="Mont-Saint-Michel bei Ebbe"><img class="p3" src="bilder/hero-1.jpg" alt="St. Peter-Ording bei Sonnenuntergang"></div>
+      <div class="slide"><img class="p1" src="bilder/hero-3.jpg" alt="Mont-Saint-Michel bei Ebbe"><img class="p2" src="bilder/hero-1.jpg" alt="St. Peter-Ording bei Sonnenuntergang"><img class="p3" src="bilder/hero-2.jpg" alt="Strandkörbe auf dem Holzsteg bei Sonnenaufgang"></div>
     </div>
     <div class="center">
       <div class="slogans">
@@ -499,7 +504,7 @@
   document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 
   // Hintergrundbilder der oberen Box wechseln (alle 6 s)
-  const heroImgs = [...document.querySelectorAll('#heroBg img')];
+  const heroImgs = [...document.querySelectorAll('#heroBg .slide')];
   const heroTitles = [...document.querySelectorAll('.hero .title')];
   const dotsEl = document.getElementById('heroDots');
   let heroIdx = 0, heroTimer;
