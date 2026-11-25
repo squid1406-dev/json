@@ -124,7 +124,7 @@
   .about { display: grid; grid-template-columns: 1.2fr 1fr; column-gap: 72px; row-gap: 56px; align-items: start; }
   .about .pic { grid-row: 1; grid-column: 1; position: relative; top: -50px; }
   .about .about-head { grid-row: 1; grid-column: 2; }
-  .about .about-text { grid-row: 2; grid-column: 1 / -1; column-count: 2; column-gap: 56px; }
+  .about .about-text { grid-row: 2; grid-column: 1 / -1; column-count: 2; column-gap: 56px; margin-top: -80px; }
   .about .about-text p { break-inside: avoid; }
   .about .about-text strong { font-weight: 600; color: var(--text); }
   .about .pic { position: relative; aspect-ratio: 1 / 1; overflow: hidden; max-width: 600px; width: 100%; justify-self: end; border-radius: 50%; }
@@ -135,7 +135,7 @@
   .about p { color: var(--grau); max-width: 50ch; margin: 0 0 1.1em; }
   .exif { display: flex; gap: 28px; flex-wrap: wrap; border-top: 1px solid var(--linie); padding-top: 22px; margin-top: 30px; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; color: var(--grau); }
   .exif b { display: block; font-family: var(--titel); font-size: 1.8rem; letter-spacing: 0; text-transform: none; color: var(--text); font-weight: 400; }
-  @media (max-width: 860px) { .about { grid-template-columns: 1fr; row-gap: 40px; } .about .pic, .about .about-head, .about .about-text { grid-row: auto; grid-column: 1; } .about .about-text { column-count: 1; } .about .pic { max-width: 360px; justify-self: start; top: 0; } }
+  @media (max-width: 860px) { .about { grid-template-columns: 1fr; row-gap: 40px; } .about .pic, .about .about-head, .about .about-text { grid-row: auto; grid-column: 1; } .about .about-text { column-count: 1; margin-top: 0; } .about .pic { max-width: 360px; justify-self: start; top: 0; } }
 
   /* ---------- Portfolio: horizontaler Filmstreifen, per Scrollen bewegt ---------- */
   .film { position: relative; height: 420vh; background: var(--bg); }
@@ -297,7 +297,6 @@
     <div class="inner about">
       <figure class="pic" data-reveal style="margin:0">
         <img src="bilder/portrait-stephanie.jpg" alt="Portrait von Stephanie Gläser" width="500" height="500">
-        <figcaption>Stephanie Gläser</figcaption>
       </figure>
       <div class="about-head develop" data-reveal>
         <p class="kicker">01 — Über mich</p>
