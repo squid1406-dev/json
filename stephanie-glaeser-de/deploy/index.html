@@ -196,8 +196,8 @@
   .link-item img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; margin-bottom: 18px; transition: transform 1.2s var(--ease); }
   .link-item:hover img { transform: scale(1.03); }
   .link-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: nowrap; }
-  .link-name { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400; font-size: min(2.2rem, 6.4cqw); line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-  .link-go { font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gruen); border-bottom: 1px solid var(--gruen); padding-bottom: 3px; white-space: nowrap; }
+  .link-name { flex: 1 1 auto; min-width: 0; font-family: var(--titel); font-weight: 400; font-size: min(1.9rem, 5.2cqw); line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .link-go { flex: none; font-size: .9rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gruen); border-bottom: 1px solid var(--gruen); padding-bottom: 3px; white-space: nowrap; }
   @media (max-width: 1100px) { .link-row { flex-direction: column; align-items: flex-start; gap: 10px; } .link-name { font-size: min(2.2rem, 9cqw); } }
   @media (max-width: 760px) { .link-frame { grid-template-columns: 1fr; gap: 26px; } }
 
@@ -472,11 +472,11 @@
       <div class="link-frame develop" data-reveal>
         <a class="link-item" href="https://augenliebe-reiseblog.de/" target="_blank" rel="noopener">
           <div class="link-art" aria-hidden="true"><svg viewBox="0 0 300 200" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M40 60 L110 40 L190 62 L260 40 V150 L190 170 L110 148 L40 170 Z"/><path d="M110 40 V148 M190 62 V170"/><path d="M62 118 C92 96 118 128 146 104 S206 84 232 98" stroke-dasharray="2 6"/><circle cx="62" cy="118" r="4" fill="currentColor"/><circle cx="232" cy="98" r="4" fill="currentColor"/><path d="M232 74 L238 84 L232 94 L226 84 Z"/></svg></div>
-          <div class="link-row"><span class="link-name">Augenliebe</span><span class="link-go">Reiseblog →</span></div>
+          <div class="link-row"><span class="link-name">Augenliebe Reiseblog</span><span class="link-go">→</span></div>
         </a>
         <a class="link-item" href="https://www.instagram.com/stephanie.glaeser/" target="_blank" rel="noopener">
           <div class="link-art" aria-hidden="true"><svg viewBox="0 0 300 200" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="70" y="56" width="160" height="112" rx="16"/><path d="M116 56 L128 36 H172 L184 56"/><circle cx="150" cy="112" r="34"/><circle cx="150" cy="112" r="16"/><circle cx="208" cy="78" r="5" fill="currentColor"/></svg></div>
-          <div class="link-row"><span class="link-name">@stephanie.glaeser</span><span class="link-go">Instagram →</span></div>
+          <div class="link-row"><span class="link-name">Instagram @stephanie.glaeser</span><span class="link-go">→</span></div>
         </a>
       </div>
     </div>
