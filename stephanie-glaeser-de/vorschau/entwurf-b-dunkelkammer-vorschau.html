@@ -94,10 +94,10 @@
   .hero .bg .slide { position: absolute; inset: 0; opacity: 0; transform: scale(1.06); transition: opacity 2.4s ease, transform 9s linear; }
   .hero .bg .slide.on { opacity: 1; transform: scale(1); }
   .hero .bg .slide.first { animation: expose 3.2s .3s var(--ease) forwards; }
-  .hero .bg .slide img { position: absolute; top: 0; bottom: 0; height: 100%; object-fit: contain; }
-  .hero .bg .slide img.p1 { left: 0; width: 27%; clip-path: polygon(0 0, 100% 0, 77.8% 100%, 0 100%); }
-  .hero .bg .slide img.p2 { left: 21%; width: 56%; clip-path: polygon(10.7% 0, 100% 0, 89.3% 100%, 0 100%); }
-  .hero .bg .slide img.p3 { left: 71%; width: 29%; clip-path: polygon(20.7% 0, 100% 0, 100% 100%, 0 100%); }
+  .hero .bg .slide img { position: absolute; top: 0; bottom: 0; height: 100%; object-fit: cover; }
+  .hero .bg .slide img.p1 { left: 0; width: 27%; object-position: 30% 50%; clip-path: polygon(0 0, 100% 0, 77.8% 100%, 0 100%); }
+  .hero .bg .slide img.p2 { left: 21%; width: 56%; object-position: 50% 20%; clip-path: polygon(10.7% 0, 100% 0, 89.3% 100%, 0 100%); }
+  .hero .bg .slide img.p3 { left: 71%; width: 29%; object-position: 70% 50%; clip-path: polygon(20.7% 0, 100% 0, 100% 100%, 0 100%); }
   @keyframes expose { from { filter: grayscale(1) brightness(.5); } to { filter: grayscale(0) brightness(1); } }
   .hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
     background: linear-gradient(180deg, rgb(10 16 15 / .55) 0%, rgb(10 16 15 / .35) 30%, rgb(10 16 15 / .6) 70%, rgb(10 16 15 / .8) 100%), radial-gradient(ellipse at center, rgb(10 16 15 / .5) 0%, rgb(10 16 15 / .15) 60%, rgb(10 16 15 / .5) 100%); }
