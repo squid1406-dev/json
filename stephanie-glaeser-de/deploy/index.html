@@ -191,6 +191,8 @@
   /* Reiseblog & Instagram: Variante 8 (Miniaturen mit Rahmen) */
   .link-frame { background: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
   .link-item { display: block; color: inherit; text-decoration: none; min-width: 0; background: rgb(255 255 255 / .035); padding: 22px; container-type: inline-size; }
+  .link-art { aspect-ratio: 3 / 2; background: #0b1211; color: var(--gruen); margin-bottom: 18px; display: flex; align-items: center; justify-content: center; }
+  .link-art svg { width: 78%; height: 78%; }
   .link-item img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; margin-bottom: 18px; transition: transform 1.2s var(--ease); }
   .link-item:hover img { transform: scale(1.03); }
   .link-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: nowrap; }
@@ -469,14 +471,15 @@
       <div class="develop" data-reveal><p class="kicker">05 — Mehr von mir</p><h2>Unterwegs <em>&amp;</em> online</h2></div>
       <div class="link-frame develop" data-reveal>
         <a class="link-item" href="https://augenliebe-reiseblog.de/" target="_blank" rel="noopener">
-          <img src="bilder/hero-3.jpg" alt="Mont-Saint-Michel bei Ebbe">
+          <div class="link-art" aria-hidden="true"><svg viewBox="0 0 300 200" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M40 60 L110 40 L190 62 L260 40 V150 L190 170 L110 148 L40 170 Z"/><path d="M110 40 V148 M190 62 V170"/><path d="M62 118 C92 96 118 128 146 104 S206 84 232 98" stroke-dasharray="2 6"/><circle cx="62" cy="118" r="4" fill="currentColor"/><circle cx="232" cy="98" r="4" fill="currentColor"/><path d="M232 74 L238 84 L232 94 L226 84 Z"/></svg></div>
           <div class="link-row"><span class="link-name">Augenliebe</span><span class="link-go">Reiseblog →</span></div>
         </a>
         <a class="link-item" href="https://www.instagram.com/stephanie.glaeser/" target="_blank" rel="noopener">
-          <img src="bilder/hero-2.jpg" alt="Strandkörbe auf dem Holzsteg bei Sonnenaufgang">
+          <div class="link-art" aria-hidden="true"><svg viewBox="0 0 300 200" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="70" y="56" width="160" height="112" rx="16"/><path d="M116 56 L128 36 H172 L184 56"/><circle cx="150" cy="112" r="34"/><circle cx="150" cy="112" r="16"/><circle cx="208" cy="78" r="5" fill="currentColor"/></svg></div>
           <div class="link-row"><span class="link-name">@stephanie.glaeser</span><span class="link-go">Instagram →</span></div>
         </a>
       </div>
+    </div>
     </div>
   </section>
 
